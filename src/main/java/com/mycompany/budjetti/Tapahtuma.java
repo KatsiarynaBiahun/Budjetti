@@ -21,6 +21,6 @@ public class Tapahtuma {
     }
 
     public String toString() {
-        return this.kategoria + " " + this.lasku + " " + this.muistiinpano;
+        return this.kategoria + "," +this.lasku + "," + this.muistiinpano;
     }
 }

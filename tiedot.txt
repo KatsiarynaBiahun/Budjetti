@@ -7,3 +7,4 @@ ket,ket
 ho,ho
 ko,ko
 vahvistatest,vahvista
+Katariina,Kissa123

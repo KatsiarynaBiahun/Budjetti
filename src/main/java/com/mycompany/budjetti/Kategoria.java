@@ -14,7 +14,7 @@ public class Kategoria {
 
     public void lisaa(Tapahtuma tapahtuma) {
         this.tapahtuma.add(tapahtuma);
-         }
+    } 
 
     //dont work
     public double summa() {
@@ -31,11 +31,12 @@ public class Kategoria {
             merkkijono = merkkijono + " " + numero.toString() + "\n";
         }
         return merkkijono;
+       
     }
 
     //dont work
     public String toString() {
-        return ": " + this.summa;
+        return  ": " + this.summa;
     }
 
 }

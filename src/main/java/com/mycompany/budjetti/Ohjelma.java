@@ -63,7 +63,7 @@ public class Ohjelma extends javax.swing.JFrame {
         jTextField12 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jlblRuoka = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -124,8 +124,8 @@ public class Ohjelma extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Tulot");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("jLabel3");
+        jlblRuoka.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlblRuoka.setText("jLabel3");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("jLabel4");
@@ -257,7 +257,7 @@ public class Ohjelma extends javax.swing.JFrame {
                             .addComponent(jTextField9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                            .addComponent(jlblRuoka, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -294,7 +294,7 @@ public class Ohjelma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtxtRuoka, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3))
+                        .addComponent(jlblRuoka))
                     .addComponent(jLabel9)
                     .addComponent(jTextField1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -359,16 +359,16 @@ public class Ohjelma extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jbtnPaivitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPaivitaActionPerformed
-        //System.out.println(ruoka.toString());
-        // jtxtRuoka.setText(ruoka.toString());
-        String kategoria = "ruoka";
-        double lasku = 5;
-        String muistiinpano = "nuistio";
+        String menot = "Menot.txt";
+        String kategoria = "Ruoka";
+        jtxtRuoka.setText(ReadFile.readTapahtuma(menot, kategoria));
+        
+        //Kategoria ruoka = new Kategoria();
 
-        Tapahtuma tapahtuma = new Tapahtuma(kategoria, lasku, muistiinpano);
-
-        ruoka.lisaa(tapahtuma);
-        jtxtRuoka.setText(ruoka.toString());
+        
+        //ruoka.summa();
+        //jtxtRuoka.setText(ruoka.tulosta());
+        //jlblRuoka.setText(ruoka.toString());
     }//GEN-LAST:event_jbtnPaivitaActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -420,7 +420,6 @@ public class Ohjelma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -459,6 +458,7 @@ public class Ohjelma extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JButton jbtnPaivita;
+    private javax.swing.JLabel jlblRuoka;
     private javax.swing.JTextField jtxtRuoka;
     // End of variables declaration//GEN-END:variables
 }

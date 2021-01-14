@@ -1,0 +1,4 @@
+Ruoka,5.3,porkkana
+Ruoka,4.0,lattikko
+AsunnonVuokra,500.0,tammikuu
+Matkakortti,50.0,opiskelijalle

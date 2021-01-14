@@ -158,10 +158,10 @@ public class LisääTulot extends javax.swing.JFrame {
             kategoria = "Tuki";
         }
         if (buttonGroup1.getSelection().getActionCommand() == "Maksun Palautus") {
-            kategoria = "Maksun Palautus";
+            kategoria = "Maksun palautus";
         }
         if (buttonGroup1.getSelection().getActionCommand() == "Kiinteistöjen Tulot") {
-            kategoria = "Kiinteistöjen Tulot";
+            kategoria = "Kiinteistöjen tulot";
         }
         if (buttonGroup1.getSelection().getActionCommand() == "Investoinnit") {
             kategoria = "Investoinnit";

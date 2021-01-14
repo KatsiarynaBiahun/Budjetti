@@ -153,10 +153,10 @@ public class LisääMenot extends javax.swing.JFrame {
             kategoria = "Ruoka";
         }
         if (buttonGroup1.getSelection().getActionCommand() == "AsunnonVuokra") {
-            kategoria = "AsunnonVuokra";
+            kategoria = "Asunnon vuokra";
         }
         if (buttonGroup1.getSelection().getActionCommand() == "PuhelimenMaksu") {
-            kategoria = "PuhelimenMaksu";
+            kategoria = "Puhelimen maksu";
         }
         if (buttonGroup1.getSelection().getActionCommand() == "Matkakortti") {
             kategoria = "Matkakortti";
@@ -165,15 +165,20 @@ public class LisääMenot extends javax.swing.JFrame {
             kategoria = "Lääkkeet";
         }
         if (buttonGroup1.getSelection().getActionCommand() == "SuoratoistapalvelunMaksu") {
-            kategoria = "SuoratoistapalvelunMaksu";
+            kategoria = "Suoratoistapalvelun maksu";
         }
 
         Tapahtuma tapahtuma = new Tapahtuma(kategoria, lasku, muistiinpano);
 
+        String new_path = "C:\\Users\\94630\\OneDrive\\Tiedostot\\NetBeansProjects\\Budjetti\\Menot.txt";
+        String merkkijono = tapahtuma.toString();
+        ReadFile.lisaaMerkkijono(merkkijono, new_path);
+        /*
         Ohjelma rev = new Ohjelma();
 
         if (kategoria.equals("Ruoka")) {
-            rev.ruoka.lisaa(tapahtuma);
+            //rev.ruoka.lisaa(tapahtuma);
+             
         }
         if (kategoria.equals("AsunnonVuokra")) {
             rev.asunnonVuokra.lisaa(tapahtuma);
@@ -190,7 +195,7 @@ public class LisääMenot extends javax.swing.JFrame {
         if (kategoria.equals("SuoratoistapalvelunMaksu")) {
             rev.suoratoistapalvelunMaksu.lisaa(tapahtuma);
         }
-
+         */
         Ohjelma g = new Ohjelma();
         g.setVisible(true);
         sulje();

@@ -8,7 +8,6 @@ public class Kirjautuminen extends javax.swing.JFrame {
 
     String tunnus;
     String salasana;
-   
 
     public Kirjautuminen() {
         initComponents();
@@ -115,9 +114,10 @@ public class Kirjautuminen extends javax.swing.JFrame {
 
         tunnus = jtxtTunnus.getText();
         salasana = jtxtSalasana.getText();
+        String txt = "tiedot.txt";
 
         boolean onLista = false;
-        if (ReadFile.read(tunnus, salasana)) {
+        if (ReadFile.read(tunnus, salasana, txt)) {
             Ohjelma g = new Ohjelma(tunnus);
             g.setVisible(true);
             onLista = true;
@@ -156,6 +156,8 @@ public class Kirjautuminen extends javax.swing.JFrame {
         jtxtVahvista.setVisible(true);
         jlblVahvista.setVisible(true);
 
+        String new_path = "C:\\Users\\94630\\OneDrive\\Tiedostot\\NetBeansProjects\\Budjetti\\tiedot.txt";
+
         tunnus = jtxtTunnus.getText();
         salasana = jtxtSalasana.getText();
         // käyttäjät.add(käyttäjä); // näppäimistöltä
@@ -164,7 +166,7 @@ public class Kirjautuminen extends javax.swing.JFrame {
             Tunnistetiedot käyttäjä = new Tunnistetiedot(tunnus, salasana);
             String merkkijono = käyttäjä.toString();
             //lukeminen tiedostosta 
-            ReadFile.lisaaMerkkijono(merkkijono);
+            ReadFile.lisaaMerkkijono(merkkijono, new_path);
             JOptionPane.showMessageDialog(this, "Käyttäjä " + tunnus + " on luotu. \n Rekisteröinti onnistui.");
         } else {
             JOptionPane.showMessageDialog(this, "Käyttäjä " + tunnus + " ei ole luotu. \n Vahvista salasana uudelleen.");
