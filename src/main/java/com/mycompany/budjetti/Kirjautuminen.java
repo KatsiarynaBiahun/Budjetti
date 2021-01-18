@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 public class Kirjautuminen extends javax.swing.JFrame {
 
+    ReadFile read = new ReadFile();
     String tunnus;
     String salasana;
 
@@ -117,7 +118,7 @@ public class Kirjautuminen extends javax.swing.JFrame {
         String txt = "tiedot.txt";
 
         boolean onLista = false;
-        if (ReadFile.read(tunnus, salasana, txt)) {
+        if (read.read(tunnus, salasana, txt)) {
             Ohjelma g = new Ohjelma(tunnus);
             g.setVisible(true);
             onLista = true;
