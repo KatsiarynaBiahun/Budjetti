@@ -14,43 +14,23 @@ public class ReadFile {
     }
 
     public boolean read(String tunnus, String salasana, String txt) {
+        //käyttäjätiedot, jotka on syötetty juuri niin luetaan oikessa muodossa Tunnistetiedot -luokan avulla
         Tunnistetiedot käyttäjä = new Tunnistetiedot(tunnus, salasana);
         String syötö = käyttäjä.toString();
 
+        //lisätään kaikki rivit txt -tiedostosta ArrayListaan  
         addLista(txt);
-        /*
-        ArrayList<String> rivit = new ArrayList<>();
-        try (Scanner tiedostonLukija = new Scanner(Paths.get(txt))) {
-            while (tiedostonLukija.hasNextLine()) {
-                rivit.add(tiedostonLukija.nextLine());
-            }
-        } catch (Exception e) {
-            System.out.println("Virhe: " + e.getMessage());
-        }
-         */
+        //verrataan ArrayListan jokaisen rivi syötöön 
         for (String jono : this.rivit) {
             if (syötö.equals(jono)) {
                 return true;
             }
         }
         return false;
-
     }
 
     public String readTapahtuma(String txt, String kategoria) {
-
-        addLista(txt);
-        /*
-        ArrayList<String> rivit = new ArrayList<>();
-        try (Scanner tiedostonLukija = new Scanner(Paths.get(txt))) {
-            while (tiedostonLukija.hasNextLine()) {
-                rivit.add(tiedostonLukija.nextLine());
-            }
-        } catch (Exception e) {
-            System.out.println("Virhe: " + e.getMessage());
-        }*/
-        // с этой часть. все записывает
-
+        // luetaan vallitun kategorian tapahtumat this.rivit listasta jotta ne ilmestyy JTableen
         ArrayList<String> kategoriaOnLista = new ArrayList<>();
         for (String jono : this.rivit) {
             String[] palat = jono.split(",");
@@ -67,8 +47,7 @@ public class ReadFile {
     }
 
     public String readKaikkiTapahtumat(String txt) {
-        addLista(txt);
-
+        // luetaan this.rivit listasta kaikki tapahtumat jotta ne ilmestyy JTableen
         String tulo = "";
         for (String tulosta : this.rivit) {
             tulo = tulo + " " + tulosta + "\n";
@@ -77,8 +56,7 @@ public class ReadFile {
     }
 
     public double summa(String txt, String kategoria) {
-        addLista(txt);
-
+        //valittujen kategorian tapahtumien summa 
         ArrayList<String> kategoriaOnLista = new ArrayList<>();
         for (String jono : this.rivit) {
             String[] palat = jono.split(",");
@@ -87,7 +65,7 @@ public class ReadFile {
                 kategoriaOnLista.add(jono);
             }
         }
-        
+
         double raha = 0;
         for (String summa : kategoriaOnLista) {
             String[] palat = summa.split(",");
@@ -96,19 +74,9 @@ public class ReadFile {
         return raha;
     }
 
-    public double summaKaikkien(String txt) {
-        addLista(txt);
-
-        double rahaKaikkien = 0.0;
-        for (String jono : this.rivit) {
-            String[] palat = jono.split(",");
-            rahaKaikkien += Double.valueOf(palat[1]);
-        }
-        return rahaKaikkien;
-    }
-
     public void addLista(String txt) {
-
+        // lisätään kaikki tapahtumat txt-tiedostosta this.rivit -listaan; 
+        // suoritetaan kun Ohjelma -luokka avataan
         try (Scanner tiedostonLukija = new Scanner(Paths.get(txt))) {
             while (tiedostonLukija.hasNextLine()) {
                 this.rivit.add(tiedostonLukija.nextLine());
@@ -116,10 +84,11 @@ public class ReadFile {
         } catch (Exception e) {
             System.out.println("Virhe: " + e.getMessage());
         }
-        
+
     }
 
     public static void lisaaMerkkijono(String merkkijono, String new_path) {
+        //lisätään merkijonoa txt-tiedostoon
         try {
             Write line = new Write(new_path, true);
             line.fileWrite(merkkijono);
@@ -127,4 +96,10 @@ public class ReadFile {
             System.out.println(a.getMessage());
         }
     }
+
+    public void addMerkkijono(String merkkijono) {
+        //lisätään vain yhden uuden tapahtuman this.rivit -listaan
+        this.rivit.add(merkkijono);
+    }
+
 }

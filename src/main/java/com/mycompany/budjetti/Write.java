@@ -21,7 +21,11 @@ public class Write {
     public void fileWrite(String text) throws IOException {
         FileWriter write_to_file = new FileWriter(path_to_file, append);
         PrintWriter print = new PrintWriter(write_to_file);
-        print.printf("%s" + "%n", text);
+        if (path_to_file.isBlank()) {
+            print.printf(text);
+        } else {
+            print.printf("%s" + "%n", text);
+        }
         print.close();
     }
 }

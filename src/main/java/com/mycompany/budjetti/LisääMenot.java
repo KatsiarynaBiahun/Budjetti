@@ -1,19 +1,15 @@
 package com.mycompany.budjetti;
 
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class LisääMenot extends javax.swing.JFrame {
 
-    public LisääMenot() {
+    private Ohjelma paa;
+    
+    public LisääMenot(Object ohjelma) {
         initComponents();
         this.setTitle("Lisää menot, ole hyvä!");
-    }
-
-    public void sulje() {
-        WindowEvent winClosingEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+        paa = (Ohjelma) ohjelma;
     }
 
     @SuppressWarnings("unchecked")
@@ -34,105 +30,94 @@ public class LisääMenot extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jradioPuhelimenMaksu = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(400, 500));
+        setResizable(false);
+        getContentPane().setLayout(null);
+        getContentPane().add(jtxtLasku);
+        jtxtLasku.setBounds(150, 300, 55, 30);
 
         buttonGroup1.add(jradioMatkakortti);
+        jradioMatkakortti.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioMatkakortti.setText("Matkakortti");
+        getContentPane().add(jradioMatkakortti);
+        jradioMatkakortti.setBounds(150, 210, 113, 29);
+        getContentPane().add(jtxtMuistiinpano);
+        jtxtMuistiinpano.setBounds(150, 340, 184, 40);
 
         buttonGroup1.add(jradioLääkkeet);
+        jradioLääkkeet.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioLääkkeet.setText("Lääkkeet");
+        getContentPane().add(jradioLääkkeet);
+        jradioLääkkeet.setBounds(150, 240, 91, 29);
 
-        jLabel2.setText("Lasku, €:");
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel2.setText("Lasku, € :");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(50, 300, 90, 25);
 
         buttonGroup1.add(jradioSuoratoistapalvelunMaksu);
+        jradioSuoratoistapalvelunMaksu.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioSuoratoistapalvelunMaksu.setText("Suoratoistapalvelun maksu");
+        getContentPane().add(jradioSuoratoistapalvelunMaksu);
+        jradioSuoratoistapalvelunMaksu.setBounds(150, 270, 230, 21);
 
-        jLabel3.setText("Muistiinpano:");
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel3.setText("Muistiinpano :");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 340, 130, 25);
 
         buttonGroup1.add(jradioRuoka);
+        jradioRuoka.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioRuoka.setText("Ruoka");
+        getContentPane().add(jradioRuoka);
+        jradioRuoka.setBounds(150, 120, 120, 29);
 
         buttonGroup1.add(jradioAsunnonVuokra);
+        jradioAsunnonVuokra.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioAsunnonVuokra.setText("Asunnon vuokra");
+        getContentPane().add(jradioAsunnonVuokra);
+        jradioAsunnonVuokra.setBounds(150, 150, 137, 30);
 
+        jbtnLisaa.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jbtnLisaa.setText("Lisää");
         jbtnLisaa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnLisaaActionPerformed(evt);
             }
         });
+        getContentPane().add(jbtnLisaa);
+        jbtnLisaa.setBounds(150, 390, 80, 30);
 
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jLabel1.setText("Kategoria :");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(30, 120, 100, 19);
 
         buttonGroup1.add(jradioPuhelimenMaksu);
+        jradioPuhelimenMaksu.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioPuhelimenMaksu.setText("Puhelimen maksu");
+        getContentPane().add(jradioPuhelimenMaksu);
+        jradioPuhelimenMaksu.setBounds(150, 180, 167, 31);
 
-        jLabel4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 36)); // NOI18N
         jLabel4.setText("Meno");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(150, 40, 140, 49);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtxtLasku, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnLisaa)
-                            .addComponent(jtxtMuistiinpano, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jradioAsunnonVuokra)
-                            .addComponent(jradioPuhelimenMaksu)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4)
-                                .addComponent(jradioRuoka))
-                            .addComponent(jradioMatkakortti)
-                            .addComponent(jradioLääkkeet)
-                            .addComponent(jradioSuoratoistapalvelunMaksu))))
-                .addGap(0, 38, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel4)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jradioRuoka)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jradioAsunnonVuokra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jradioPuhelimenMaksu)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jradioMatkakortti)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jradioLääkkeet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jradioSuoratoistapalvelunMaksu)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtLasku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtMuistiinpano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(40, 40, 40)
-                .addComponent(jbtnLisaa)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\94630\\OneDrive\\Työpöytä\\gettyimages-472297015-2048x2048.jpg")); // NOI18N
+        jLabel5.setText("jLabel5");
+        jLabel5.setPreferredSize(new java.awt.Dimension(400, 450));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 400, 110);
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setOpaque(true);
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 110, 400, 360);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -168,37 +153,22 @@ public class LisääMenot extends javax.swing.JFrame {
             kategoria = "Suoratoistapalvelun maksu";
         }
 
+        //tapahtuma luetaan oikeassa muodossa Tapahtuma luokan avulla
         Tapahtuma tapahtuma = new Tapahtuma(kategoria, lasku, muistiinpano);
-
-        String new_path = "C:\\Users\\94630\\OneDrive\\Tiedostot\\NetBeansProjects\\Budjetti\\Menot.txt";
         String merkkijono = tapahtuma.toString();
+        
+        //tapahtuma lisää Menot.txt -asiakirjaan
+        String new_path = "Menot.txt";
         ReadFile.lisaaMerkkijono(merkkijono, new_path);
-        /*
-        Ohjelma rev = new Ohjelma();
-
-        if (kategoria.equals("Ruoka")) {
-            //rev.ruoka.lisaa(tapahtuma);
-             
-        }
-        if (kategoria.equals("AsunnonVuokra")) {
-            rev.asunnonVuokra.lisaa(tapahtuma);
-        }
-        if (kategoria.equals("PuhelimenMaksu")) {
-            rev.puhelimenMaksu.lisaa(tapahtuma);
-        }
-        if (kategoria.equals("Matkakortti")) {
-            rev.matkakortti.lisaa(tapahtuma);
-        }
-        if (kategoria.equals("Lääkkeet")) {
-            rev.lääkkeet.lisaa(tapahtuma);
-        }
-        if (kategoria.equals("SuoratoistapalvelunMaksu")) {
-            rev.suoratoistapalvelunMaksu.lisaa(tapahtuma);
-        }
-         */
-        Ohjelma g = new Ohjelma();
-        g.setVisible(true);
-        sulje();
+  
+        //tapahtuma-merkkijono välitetään Ohjelma pääluokalle
+        paa.presumma(merkkijono);
+        
+        JOptionPane.showMessageDialog(this, "Lisääminen onnistui. Lisä uudellen tai sulje ikkuna.");
+       
+        buttonGroup1.clearSelection();
+        jtxtLasku.setText("");
+        jtxtMuistiinpano.setText("");
     }//GEN-LAST:event_jbtnLisaaActionPerformed
 
     /**
@@ -232,7 +202,7 @@ public class LisääMenot extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LisääMenot().setVisible(true);
+                new LisääMenot("").setVisible(true);
             }
         });
     }
@@ -243,6 +213,8 @@ public class LisääMenot extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jbtnLisaa;
     private javax.swing.JRadioButton jradioAsunnonVuokra;
     private javax.swing.JRadioButton jradioLääkkeet;

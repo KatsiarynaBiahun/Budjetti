@@ -1,19 +1,15 @@
 package com.mycompany.budjetti;
 
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class LisääTulot extends javax.swing.JFrame {
 
-    public LisääTulot() {
-        initComponents();
-        this.setTitle("Lisää menot, ole hyvä!");
-    }
+    private Ohjelma paa;
 
-    public void sulje() {
-        WindowEvent winClosingEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    public LisääTulot(Object ohjelma) {
+        initComponents();
+        this.setTitle("Lisää tulot, ole hyvä!");
+        paa = (Ohjelma) ohjelma;
     }
 
     @SuppressWarnings("unchecked")
@@ -34,104 +30,94 @@ public class LisääTulot extends javax.swing.JFrame {
         jradioTuki = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jradioInvestoinnit = new javax.swing.JRadioButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(400, 500));
+        setResizable(false);
+        getContentPane().setLayout(null);
+        getContentPane().add(jtxtLasku);
+        jtxtLasku.setBounds(150, 300, 55, 30);
 
         buttonGroup1.add(jradioMaksunPalautus);
+        jradioMaksunPalautus.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioMaksunPalautus.setText("Maksun palautus ");
+        getContentPane().add(jradioMaksunPalautus);
+        jradioMaksunPalautus.setBounds(150, 210, 160, 29);
+        getContentPane().add(jtxtMuistiinpano);
+        jtxtMuistiinpano.setBounds(150, 340, 184, 40);
 
         buttonGroup1.add(jradioKiinteistöjenTulot);
+        jradioKiinteistöjenTulot.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioKiinteistöjenTulot.setText("Kiinteistöjen tulot");
+        getContentPane().add(jradioKiinteistöjenTulot);
+        jradioKiinteistöjenTulot.setBounds(150, 240, 160, 29);
 
-        jLabel2.setText("Lasku, €:");
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel2.setText("Lasku, € :");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(50, 300, 90, 25);
 
-        jLabel3.setText("Muistiinpano:");
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel3.setText("Muistiinpano :");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 340, 130, 25);
 
         buttonGroup1.add(jradioPalkka);
+        jradioPalkka.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioPalkka.setText("Palkka");
+        getContentPane().add(jradioPalkka);
+        jradioPalkka.setBounds(150, 120, 71, 29);
 
         buttonGroup1.add(jradioLahja);
+        jradioLahja.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioLahja.setText("Lahja");
+        getContentPane().add(jradioLahja);
+        jradioLahja.setBounds(150, 150, 65, 29);
 
+        jbtnLisaa.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jbtnLisaa.setText("Lisää");
         jbtnLisaa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnLisaaActionPerformed(evt);
             }
         });
+        getContentPane().add(jbtnLisaa);
+        jbtnLisaa.setBounds(150, 390, 79, 33);
 
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jLabel1.setText("Kategoria :");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(30, 120, 110, 19);
 
         buttonGroup1.add(jradioTuki);
+        jradioTuki.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioTuki.setText("Tuki");
+        getContentPane().add(jradioTuki);
+        jradioTuki.setBounds(150, 180, 57, 29);
 
-        jLabel4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 36)); // NOI18N
         jLabel4.setText("Tulo");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(150, 40, 100, 49);
 
+        buttonGroup1.add(jradioInvestoinnit);
+        jradioInvestoinnit.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jradioInvestoinnit.setText("Investoinnit");
+        getContentPane().add(jradioInvestoinnit);
+        jradioInvestoinnit.setBounds(150, 270, 130, 29);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtxtLasku, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnLisaa)
-                            .addComponent(jtxtMuistiinpano, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jradioLahja)
-                            .addComponent(jradioTuki)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4)
-                                .addComponent(jradioPalkka))
-                            .addComponent(jradioMaksunPalautus)
-                            .addComponent(jradioKiinteistöjenTulot)
-                            .addComponent(jradioInvestoinnit))))
-                .addGap(0, 38, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel4)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jradioPalkka)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jradioLahja)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jradioTuki)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jradioMaksunPalautus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jradioKiinteistöjenTulot)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jradioInvestoinnit)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtLasku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtMuistiinpano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(40, 40, 40)
-                .addComponent(jbtnLisaa)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\94630\\OneDrive\\Työpöytä\\gettyimages-472297015-2048x2048.jpg")); // NOI18N
+        jLabel5.setText("jLabel5");
+        jLabel5.setPreferredSize(new java.awt.Dimension(400, 450));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 400, 110);
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setOpaque(true);
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 110, 400, 360);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -167,32 +153,22 @@ public class LisääTulot extends javax.swing.JFrame {
             kategoria = "Investoinnit";
         }
 
+        //tapahtuma luetaan oikeassa muodossa Tapahtuma luokan avulla
         Tapahtuma tapahtuma = new Tapahtuma(kategoria, lasku, muistiinpano);
+        String merkkijono = tapahtuma.toString();
 
-        Ohjelma rev = new Ohjelma();
+        //tapahtuma lisää Tulot.txt -asiakirjaan
+        String new_path = "Tulot.txt";
+        ReadFile.lisaaMerkkijono(merkkijono, new_path);
 
-        if (kategoria.equals("Palkka")) {
-            rev.palkka.lisaa(tapahtuma);
-        }
-        if (kategoria.equals("Lahja")) {
-            rev.lahja.lisaa(tapahtuma);
-        }
-        if (kategoria.equals("Tuki")) {
-            rev.tuki.lisaa(tapahtuma);
-        }
-        if (kategoria.equals("Maksun Palautus")) {
-            rev.maksunPalautus.lisaa(tapahtuma);
-        }
-        if (kategoria.equals("Kiinteistöjen Tulot")) {
-            rev.kiinteistöjenTulot.lisaa(tapahtuma);
-        }
-        if (kategoria.equals("Investoinnit")) {
-            rev.investoinnit.lisaa(tapahtuma);
-        }
+        //tapahtuma-merkkijono välitetään Ohjelma pääluokalle
+        paa.presummaTulot(merkkijono);
 
-        Ohjelma g = new Ohjelma();
-        g.setVisible(true);
-        sulje();
+        JOptionPane.showMessageDialog(this, "Lisääminen onnistui. Lisä uudellen tai sulje ikkuna.");
+
+        buttonGroup1.clearSelection();
+        jtxtLasku.setText("");
+        jtxtMuistiinpano.setText("");
     }//GEN-LAST:event_jbtnLisaaActionPerformed
 
     /**
@@ -228,7 +204,7 @@ public class LisääTulot extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LisääTulot().setVisible(true);
+                new LisääTulot("").setVisible(true);
             }
         });
     }
@@ -239,6 +215,8 @@ public class LisääTulot extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jbtnLisaa;
     private javax.swing.JRadioButton jradioInvestoinnit;
     private javax.swing.JRadioButton jradioKiinteistöjenTulot;
