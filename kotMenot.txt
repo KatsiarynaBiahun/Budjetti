@@ -3,13 +3,13 @@ Ruoka,4.0,lattikko
 Asunnon vuokra,500.0,tammikuu
 Matkakortti,50.0,opiskelijalle
 Asunnon vuokra,500.0,elokuu
-Lï¿½ï¿½kkeet,45.6,
+Laakkeet,45.6,
 Suoratoistapalvelun maksu,50.0,
 Suoratoistapalvelun maksu,50.0,
-Suoratoistapalvelun maksu,30.0,20 on jï¿½ljellï¿½
+Suoratoistapalvelun maksu,30.0,20 on jaljella
 Suoratoistapalvelun maksu,50.0,
 Suoratoistapalvelun maksu,50.0,hei
-Lï¿½ï¿½kkeet,6.0,
+Laakkeet,6.0,
 Ruoka,22.0,k-market
 Asunnon vuokra,522.0,
 Asunnon vuokra,522.0,
@@ -18,14 +18,9 @@ Puhelimen maksu,21.9,
 Suoratoistapalvelun maksu,50.0,
 Suoratoistapalvelun maksu,50.0,
 Ruoka,67.0,
-Asunnon vuokra,522.0,
-Asunnon vuokra,500.0,
-Asunnon vuokra,500.0,
-Suoratoistapalvelun maksu,500.0,
-Suoratoistapalvelun maksu,2000.0,
 Matkakortti,54.0,
 Ruoka,10.0,
 Ruoka,20.0,
-Lääkkeet,5.0,
+Laakkeet,5.0,
 Matkakortti,50.0,
 Matkakortti,34.0,

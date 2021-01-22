@@ -130,7 +130,7 @@ public class LisääMenot extends javax.swing.JFrame {
         jradioAsunnonVuokra.setActionCommand("AsunnonVuokra");
         jradioPuhelimenMaksu.setActionCommand("PuhelimenMaksu");
         jradioMatkakortti.setActionCommand("Matkakortti");
-        jradioLääkkeet.setActionCommand("Lääkkeet");
+        jradioLääkkeet.setActionCommand("Laakkeet");
         jradioSuoratoistapalvelunMaksu.setActionCommand("SuoratoistapalvelunMaksu");
 
         String kategoria = "";
@@ -149,8 +149,8 @@ public class LisääMenot extends javax.swing.JFrame {
         if (buttonGroup1.getSelection().getActionCommand() == "Matkakortti") {
             kategoria = "Matkakortti";
         }
-        if (buttonGroup1.getSelection().getActionCommand() == "Lääkkeet") {
-            kategoria = "Lääkkeet";
+        if (buttonGroup1.getSelection().getActionCommand() == "Laakkeet") {
+            kategoria = "Laakkeet";
         }
         if (buttonGroup1.getSelection().getActionCommand() == "SuoratoistapalvelunMaksu") {
             kategoria = "Suoratoistapalvelun maksu";

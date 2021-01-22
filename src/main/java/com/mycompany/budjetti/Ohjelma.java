@@ -1,5 +1,7 @@
 package com.mycompany.budjetti;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,9 +33,9 @@ public class Ohjelma extends javax.swing.JFrame {
         readTulot.addLista(this.tulot);
 
         //metodit, jotka suorittavat suoraan
-            kaikki(modelMenot, readMenot, this.menot);
-            kaikki(modelTulot, readTulot, this.tulot);
-            summa();
+        kaikki(modelMenot, readMenot, this.menot);
+        kaikki(modelTulot, readTulot, this.tulot);
+        summa();
     }
 
     public Ohjelma() {
@@ -115,6 +117,8 @@ public class Ohjelma extends javax.swing.JFrame {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem17 = new javax.swing.JMenuItem();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -126,7 +130,7 @@ public class Ohjelma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(102, 204, 255));
-        setPreferredSize(new java.awt.Dimension(980, 730));
+        setPreferredSize(new java.awt.Dimension(1000, 730));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -138,17 +142,17 @@ public class Ohjelma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jtxtRuoka);
-        jtxtRuoka.setBounds(210, 140, 70, 30);
+        jtxtRuoka.setBounds(240, 140, 70, 30);
 
         jtxtAsunnonVuokra.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtAsunnonVuokra.setEnabled(false);
         getContentPane().add(jtxtAsunnonVuokra);
-        jtxtAsunnonVuokra.setBounds(210, 170, 70, 30);
+        jtxtAsunnonVuokra.setBounds(240, 170, 70, 30);
 
         jtxtLääkkeet.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtLääkkeet.setEnabled(false);
         getContentPane().add(jtxtLääkkeet);
-        jtxtLääkkeet.setBounds(210, 260, 70, 30);
+        jtxtLääkkeet.setBounds(240, 260, 70, 30);
 
         jtxtMatkakortti.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtMatkakortti.setEnabled(false);
@@ -158,7 +162,7 @@ public class Ohjelma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jtxtMatkakortti);
-        jtxtMatkakortti.setBounds(210, 230, 70, 30);
+        jtxtMatkakortti.setBounds(240, 230, 70, 30);
 
         jtxtPuhelimenMaksu.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtPuhelimenMaksu.setEnabled(false);
@@ -168,113 +172,113 @@ public class Ohjelma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jtxtPuhelimenMaksu);
-        jtxtPuhelimenMaksu.setBounds(210, 200, 70, 30);
+        jtxtPuhelimenMaksu.setBounds(240, 200, 70, 30);
 
         jtxtSuoratoistapalvelunMaksu.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtSuoratoistapalvelunMaksu.setEnabled(false);
         getContentPane().add(jtxtSuoratoistapalvelunMaksu);
-        jtxtSuoratoistapalvelunMaksu.setBounds(210, 290, 70, 30);
+        jtxtSuoratoistapalvelunMaksu.setBounds(240, 290, 70, 30);
 
         jtxtPalkka.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtPalkka.setEnabled(false);
         getContentPane().add(jtxtPalkka);
-        jtxtPalkka.setBounds(660, 140, 70, 30);
+        jtxtPalkka.setBounds(690, 140, 70, 30);
 
         jtxtLahja.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtLahja.setEnabled(false);
         getContentPane().add(jtxtLahja);
-        jtxtLahja.setBounds(660, 170, 70, 30);
+        jtxtLahja.setBounds(690, 170, 70, 30);
 
         jtxtTuki.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtTuki.setEnabled(false);
         getContentPane().add(jtxtTuki);
-        jtxtTuki.setBounds(660, 200, 70, 30);
+        jtxtTuki.setBounds(690, 200, 70, 30);
 
         jtxtMaksunPalautus.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtMaksunPalautus.setEnabled(false);
         getContentPane().add(jtxtMaksunPalautus);
-        jtxtMaksunPalautus.setBounds(660, 230, 70, 30);
+        jtxtMaksunPalautus.setBounds(690, 230, 70, 30);
 
         jtxtKiinteistöjenTulot.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtKiinteistöjenTulot.setEnabled(false);
         getContentPane().add(jtxtKiinteistöjenTulot);
-        jtxtKiinteistöjenTulot.setBounds(660, 260, 70, 30);
+        jtxtKiinteistöjenTulot.setBounds(690, 260, 70, 30);
 
         jtxtInvestoinnit.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jtxtInvestoinnit.setEnabled(false);
         getContentPane().add(jtxtInvestoinnit);
-        jtxtInvestoinnit.setBounds(660, 290, 70, 30);
+        jtxtInvestoinnit.setBounds(690, 290, 70, 30);
 
         jLabel1.setFont(new java.awt.Font("Kristen ITC", 0, 36)); // NOI18N
         jLabel1.setText("Menot");
         jLabel1.setPreferredSize(new java.awt.Dimension(119, 49));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(150, 50, 130, 49);
+        jLabel1.setBounds(180, 50, 130, 49);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 0, 36)); // NOI18N
         jLabel2.setText("Tulot");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(620, 50, 110, 50);
+        jLabel2.setBounds(650, 50, 110, 50);
 
         jlblRuoka.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblRuoka.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblRuoka);
-        jlblRuoka.setBounds(280, 140, 210, 30);
+        jlblRuoka.setBounds(310, 140, 210, 30);
 
         jlblAsunnonVuokraSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblAsunnonVuokraSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblAsunnonVuokraSumma);
-        jlblAsunnonVuokraSumma.setBounds(280, 170, 210, 30);
+        jlblAsunnonVuokraSumma.setBounds(310, 170, 210, 30);
 
         jlblPuhelimenMaksuSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblPuhelimenMaksuSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblPuhelimenMaksuSumma);
-        jlblPuhelimenMaksuSumma.setBounds(280, 200, 210, 30);
+        jlblPuhelimenMaksuSumma.setBounds(310, 200, 210, 30);
 
         jlblMatkakorttiSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblMatkakorttiSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblMatkakorttiSumma);
-        jlblMatkakorttiSumma.setBounds(280, 230, 210, 30);
+        jlblMatkakorttiSumma.setBounds(310, 230, 210, 30);
 
         jlblLaakkeetSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblLaakkeetSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblLaakkeetSumma);
-        jlblLaakkeetSumma.setBounds(280, 260, 210, 30);
+        jlblLaakkeetSumma.setBounds(310, 260, 210, 30);
 
         jlblSuoratoistapalvelunMaksuSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblSuoratoistapalvelunMaksuSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblSuoratoistapalvelunMaksuSumma);
-        jlblSuoratoistapalvelunMaksuSumma.setBounds(280, 290, 210, 30);
+        jlblSuoratoistapalvelunMaksuSumma.setBounds(310, 290, 210, 30);
 
         jlblPalkkaSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblPalkkaSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblPalkkaSumma);
-        jlblPalkkaSumma.setBounds(730, 140, 210, 30);
+        jlblPalkkaSumma.setBounds(760, 140, 210, 30);
 
         jlblLahjaSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblLahjaSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblLahjaSumma);
-        jlblLahjaSumma.setBounds(730, 170, 210, 30);
+        jlblLahjaSumma.setBounds(760, 170, 210, 30);
 
         jlblTukiSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblTukiSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblTukiSumma);
-        jlblTukiSumma.setBounds(730, 200, 210, 30);
+        jlblTukiSumma.setBounds(760, 200, 210, 30);
 
         jlblMaksunPalautusSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblMaksunPalautusSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblMaksunPalautusSumma);
-        jlblMaksunPalautusSumma.setBounds(730, 230, 210, 30);
+        jlblMaksunPalautusSumma.setBounds(760, 230, 210, 30);
 
         jlblKiinteistöjenTulotSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblKiinteistöjenTulotSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblKiinteistöjenTulotSumma);
-        jlblKiinteistöjenTulotSumma.setBounds(730, 260, 210, 30);
+        jlblKiinteistöjenTulotSumma.setBounds(760, 260, 210, 30);
 
         jlblInvestoinnitSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblInvestoinnitSumma.setForeground(new java.awt.Color(0, 204, 204));
         getContentPane().add(jlblInvestoinnitSumma);
-        jlblInvestoinnitSumma.setBounds(730, 290, 210, 30);
+        jlblInvestoinnitSumma.setBounds(760, 290, 210, 30);
 
         jtblMenot.setFont(new java.awt.Font("Kristen ITC", 0, 10)); // NOI18N
         jtblMenot.setModel(new javax.swing.table.DefaultTableModel(
@@ -303,7 +307,7 @@ public class Ohjelma extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(60, 350, 340, 307);
+        jScrollPane3.setBounds(90, 350, 340, 307);
 
         jtblTulot.setFont(new java.awt.Font("Kristen ITC", 0, 10)); // NOI18N
         jtblTulot.setModel(new javax.swing.table.DefaultTableModel(
@@ -332,81 +336,81 @@ public class Ohjelma extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(510, 350, 340, 307);
+        jScrollPane4.setBounds(540, 350, 340, 307);
 
         jLabel3.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel3.setText("Ruoka :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(150, 140, 60, 20);
+        jLabel3.setBounds(180, 140, 60, 20);
 
         jLabel15.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel15.setText("Asunnon vuokra :");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(80, 170, 130, 20);
+        jLabel15.setBounds(110, 170, 130, 20);
 
         jLabel16.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel16.setText("Puhelimen maksu :");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(80, 200, 130, 20);
+        jLabel16.setBounds(110, 200, 130, 20);
 
         jLabel17.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel17.setText("Matkakortti : ");
         getContentPane().add(jLabel17);
-        jLabel17.setBounds(110, 230, 99, 20);
+        jLabel17.setBounds(140, 230, 99, 20);
 
         jLabel18.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel18.setText("Lääkkeet :");
         getContentPane().add(jLabel18);
-        jLabel18.setBounds(130, 260, 80, 20);
+        jLabel18.setBounds(160, 260, 80, 20);
 
         jLabel19.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel19.setText("Suoratoistapalvelun maksu :");
         getContentPane().add(jLabel19);
-        jLabel19.setBounds(10, 290, 200, 20);
+        jLabel19.setBounds(40, 290, 200, 20);
 
         jLabel20.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel20.setText("Palkka : ");
         getContentPane().add(jLabel20);
-        jLabel20.setBounds(600, 140, 60, 20);
+        jLabel20.setBounds(630, 140, 60, 20);
 
         jLabel21.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel21.setText("Lahja :");
         getContentPane().add(jLabel21);
-        jLabel21.setBounds(610, 170, 50, 20);
+        jLabel21.setBounds(640, 170, 50, 20);
 
         jLabel22.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel22.setText("Tuki :");
         getContentPane().add(jLabel22);
-        jLabel22.setBounds(610, 200, 50, 20);
+        jLabel22.setBounds(640, 200, 50, 20);
 
         jLabel23.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel23.setText("Maksun palautus :");
         getContentPane().add(jLabel23);
-        jLabel23.setBounds(530, 230, 130, 20);
+        jLabel23.setBounds(560, 230, 130, 20);
 
         jLabel24.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel24.setText("Kiinteistöjen tulot :");
         getContentPane().add(jLabel24);
-        jLabel24.setBounds(520, 260, 140, 20);
+        jLabel24.setBounds(550, 260, 140, 20);
 
         jLabel25.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel25.setText("Investoinnit :");
         getContentPane().add(jLabel25);
-        jLabel25.setBounds(560, 290, 100, 20);
+        jLabel25.setBounds(590, 290, 100, 20);
 
         jLabel26.setBackground(new java.awt.Color(255, 255, 255));
         jLabel26.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel26.setOpaque(true);
         getContentPane().add(jLabel26);
-        jLabel26.setBounds(0, 120, 970, 220);
+        jLabel26.setBounds(0, 120, 990, 220);
         getContentPane().add(jLabel27);
-        jLabel27.setBounds(0, 340, 970, 340);
+        jLabel27.setBounds(0, 340, 990, 340);
 
         jLabel28.setOpaque(true);
         getContentPane().add(jLabel28);
-        jLabel28.setBounds(0, 0, 970, 120);
+        jLabel28.setBounds(0, 0, 990, 120);
 
-        jMenu2.setText("Lisää tapahtuma");
+        jMenu2.setText("Lisää tapahtuma ");
 
         jMenuItem2.setText("Lisää Menot");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -426,7 +430,7 @@ public class Ohjelma extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu7.setText("Katso kaikki tapahtumat");
+        jMenu7.setText("Katso kaikki tapahtumat ");
 
         jMenu1.setText("Valitse Menot-kategoriasta");
 
@@ -550,12 +554,24 @@ public class Ohjelma extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu7);
 
+        jMenu4.setText("Kirjaudu ulos");
+
+        jMenuItem17.setText("Kirjaudu ulos profiilista");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem17);
+
+        jMenuBar1.add(jMenu4);
+
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void timer(String merkkijono, String txt,DefaultTableModel model,ReadFile read) {
+    public void timer(String merkkijono, String txt, DefaultTableModel model, ReadFile read) {
         read.addMerkkijono(merkkijono);
 
         TimerTask task = new TimerTask() {
@@ -585,7 +601,7 @@ public class Ohjelma extends javax.swing.JFrame {
         double matkakorttiSumma = readMenot.summa(this.menot, "Matkakortti");
         jtxtMatkakortti.setText(String.valueOf(matkakorttiSumma));
 
-        double lääkkeetSumma = readMenot.summa(this.menot, "Lääkkeet");
+        double lääkkeetSumma = readMenot.summa(this.menot, "Laakkeet");
         jtxtLääkkeet.setText(String.valueOf(lääkkeetSumma));
 
         double suoratoistapalvelunMaksuSumma = readMenot.summa(this.menot, "Suoratoistapalvelun maksu");
@@ -696,7 +712,7 @@ public class Ohjelma extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         String kategoria = "Ruoka";
         Taulukko(modelMenot, readMenot, this.menot, kategoria);
@@ -738,7 +754,7 @@ public class Ohjelma extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        String kategoria = "Lääkkeet";
+        String kategoria = "Laakkeet";
         Taulukko(modelMenot, readMenot, this.menot, kategoria);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
@@ -784,6 +800,17 @@ public class Ohjelma extends javax.swing.JFrame {
         String kategoria = "Investoinnit";
         Taulukko(modelTulot, readTulot, this.tulot, kategoria);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        Kirjautuminen ikkuna = new Kirjautuminen();
+        ikkuna.setVisible(true);
+        sulje();
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    public void sulje() {
+        WindowEvent winClosingEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
 
     /**
      * @param args the command line arguments
@@ -842,6 +869,7 @@ public class Ohjelma extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -852,6 +880,7 @@ public class Ohjelma extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
