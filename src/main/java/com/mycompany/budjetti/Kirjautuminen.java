@@ -2,17 +2,33 @@ package com.mycompany.budjetti;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class Kirjautuminen extends javax.swing.JFrame {
 
     ReadFile read = new ReadFile();
     String tunnus;
-    String salasana;
+    char[] salasana;
+    char[] vahvista;
+    String txt = "tiedot.txt";
+    String MenotTiedostonNimi;
+    String TulotTiedostonNimi;
 
     public Kirjautuminen() {
         initComponents();
         jPanel1.setVisible(false);
+
+        //ota taustakuva käyttöön
+        jLabel9.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
+        jLabel5.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
+
+        jpswSalasana.setEchoChar('');
+        jpswSalasana1.setEchoChar('');
+        jpswSalasana2.setEchoChar('');
     }
 
     public void sulje() {
@@ -26,22 +42,24 @@ public class Kirjautuminen extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jbtnRekisteröidy = new javax.swing.JButton();
+        jchkSalasana1 = new javax.swing.JCheckBox();
         jtxtTunnus1 = new javax.swing.JTextField();
-        jtxtSalasana1 = new javax.swing.JTextField();
-        jtxtVahvista1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jlblVahvista1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jpswSalasana1 = new javax.swing.JPasswordField();
+        jpswSalasana2 = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jtxtTunnus = new javax.swing.JTextField();
         jbtnKirjaudu = new javax.swing.JButton();
         jbtnLuo = new javax.swing.JButton();
-        jtxtSalasana = new javax.swing.JTextField();
+        jpswSalasana = new javax.swing.JPasswordField();
+        jchkSalasana = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -61,6 +79,14 @@ public class Kirjautuminen extends javax.swing.JFrame {
             }
         });
 
+        jchkSalasana1.setFont(new java.awt.Font("Kristen ITC", 0, 10)); // NOI18N
+        jchkSalasana1.setText("Näytä salasana");
+        jchkSalasana1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jchkSalasana1ActionPerformed(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Kristen ITC", 0, 18)); // NOI18N
         jLabel6.setText("Tunnus :");
 
@@ -73,9 +99,6 @@ public class Kirjautuminen extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Kristen ITC", 0, 36)); // NOI18N
         jLabel8.setText("Tervetuloa oman Budjettiin");
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\94630\\OneDrive\\Työpöytä\\gettyimages-472297015-2048x2048.jpg")); // NOI18N
-        jLabel9.setText("jLabel5");
-
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setOpaque(true);
 
@@ -84,55 +107,58 @@ public class Kirjautuminen extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jtxtTunnus1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jtxtSalasana1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jlblVahvista1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jtxtVahvista1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpswSalasana2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpswSalasana1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtTunnus1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtnRekisteröidy, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnRekisteröidy, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jchkSalasana1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(70, 70, 70)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(169, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jtxtTunnus1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jtxtSalasana1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblVahvista1)
-                            .addComponent(jtxtVahvista1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(166, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jtxtTunnus1)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jpswSalasana1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jchkSalasana1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblVahvista1)
+                    .addComponent(jpswSalasana2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnRekisteröidy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71))
+                .addGap(76, 76, 76))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -183,12 +209,19 @@ public class Kirjautuminen extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jbtnLuo);
-        jbtnLuo.setBounds(400, 210, 150, 29);
-        getContentPane().add(jtxtSalasana);
-        jtxtSalasana.setBounds(200, 210, 178, 30);
+        jbtnLuo.setBounds(400, 20, 150, 29);
+        getContentPane().add(jpswSalasana);
+        jpswSalasana.setBounds(200, 210, 180, 30);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\94630\\OneDrive\\Työpöytä\\gettyimages-472297015-2048x2048.jpg")); // NOI18N
-        jLabel5.setText("jLabel5");
+        jchkSalasana.setFont(new java.awt.Font("Kristen ITC", 0, 10)); // NOI18N
+        jchkSalasana.setText("Näytä salasana");
+        jchkSalasana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jchkSalasanaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jchkSalasana);
+        jchkSalasana.setBounds(400, 210, 150, 30);
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, 0, 600, 160);
 
@@ -202,14 +235,16 @@ public class Kirjautuminen extends javax.swing.JFrame {
 
     private void jbtnKirjauduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnKirjauduActionPerformed
         tunnus = jtxtTunnus.getText();
-        salasana = jtxtSalasana.getText();
-        String txt = "tiedot.txt";
+        salasana = jpswSalasana.getPassword();
+
+        MenotTiedostonNimi = jtxtTunnus.getText() + "Menot.txt";
+        TulotTiedostonNimi = jtxtTunnus.getText() + "Tulot.txt";
 
         boolean onLista = false;
         //käyttäjätietojen syötö verrataan jo tiedoston kirjoittaviin tietoihin
-        if (read.read(tunnus, salasana, txt)) {
-            Ohjelma g = new Ohjelma(tunnus);
-            g.setVisible(true);
+        if (read.read(tunnus, String.valueOf(salasana), txt)) {
+            Ohjelma profiili = new Ohjelma(tunnus, MenotTiedostonNimi, TulotTiedostonNimi);
+            profiili.setVisible(true);
             onLista = true;
             sulje();
         }
@@ -227,29 +262,56 @@ public class Kirjautuminen extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnLuoActionPerformed
 
     private void jbtnRekisteröidyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRekisteröidyActionPerformed
-        String new_path = "tiedot.txt";
         tunnus = jtxtTunnus1.getText();
-        salasana = jtxtSalasana1.getText();
-        String vahvista = jtxtVahvista1.getText();
+        salasana = jpswSalasana1.getPassword();
+        vahvista = jpswSalasana2.getPassword();
 
-        if (tunnus.length() == 0 || salasana.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Merkintä jostakin kentästä puuttuu. Yritä uudelleen.", "Virhe", JOptionPane.ERROR_MESSAGE);
-        } else {
-            if (salasana.equals(vahvista)) {
-                //käyttäjätiedot luetaan oikeassa muodossa Tunnistetiedot luokan avulla
-                Tunnistetiedot käyttäjä = new Tunnistetiedot(tunnus, salasana);
-                String merkkijono = käyttäjä.toString();
-                
-                //käyttäjätiedot lisää tiedot.txt -asiakirjaan 
-                ReadFile.lisaaMerkkijono(merkkijono, new_path);
-                
-                JOptionPane.showMessageDialog(this, "Käyttäjä " + tunnus + " on luotu. \n Rekisteröinti onnistui.");
-                jPanel1.setVisible(false);
+        try {
+            if (tunnus.length() == 0 || salasana.length == 0) {
+                JOptionPane.showMessageDialog(null, "Merkintä jostakin kentästä puuttuu. Yritä uudelleen.", "Virhe", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Käyttäjä " + tunnus + " ei ole luotu. \n Vahvista salasana uudelleen.");
+                if (String.valueOf(salasana).equals(String.valueOf(vahvista))) {
+                    ReadFile.saveToFile(jtxtTunnus1.getText(), jpswSalasana1.getPassword(), txt);
+
+                    MenotTiedostonNimi = jtxtTunnus1.getText() + "Menot.txt";
+                    TulotTiedostonNimi = jtxtTunnus1.getText() + "Tulot.txt";
+                    File MenotTiedosto = new File(MenotTiedostonNimi);
+                    File TulotTiedosto = new File(TulotTiedostonNimi);
+                    MenotTiedosto.createNewFile();
+                    TulotTiedosto.createNewFile();
+                    JOptionPane.showMessageDialog(this, "Käyttäjä " + tunnus + " on luotu. \n Rekisteröinti onnistui.");
+                    jPanel1.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Käyttäjä " + tunnus + " ei ole luotu. \n Vahvista salasana uudelleen.");
+                }
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Käyttäjä " + tunnus + " ei ole luotu. \n Yrittä uudelleen.");
         }
+
     }//GEN-LAST:event_jbtnRekisteröidyActionPerformed
+
+    private void jchkSalasana1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkSalasana1ActionPerformed
+        if (jchkSalasana1.isSelected()) {
+            jpswSalasana1.setEchoChar((char) 0);
+            jpswSalasana2.setEchoChar((char) 0);
+            jchkSalasana1.setSelected(true);
+        } else {
+            jpswSalasana1.setEchoChar('');
+            jpswSalasana2.setEchoChar('');
+            jchkSalasana1.setSelected(false);
+        }
+    }//GEN-LAST:event_jchkSalasana1ActionPerformed
+
+    private void jchkSalasanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkSalasanaActionPerformed
+        if (jchkSalasana.isSelected()) {
+            jpswSalasana.setEchoChar((char) 0);
+            jchkSalasana.setSelected(true);
+        } else {
+            jpswSalasana.setEchoChar('');
+            jchkSalasana.setSelected(false);
+        }
+    }//GEN-LAST:event_jchkSalasanaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,13 +330,17 @@ public class Kirjautuminen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Kirjautuminen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kirjautuminen.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Kirjautuminen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kirjautuminen.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Kirjautuminen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kirjautuminen.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Kirjautuminen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kirjautuminen.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -301,11 +367,13 @@ public class Kirjautuminen extends javax.swing.JFrame {
     private javax.swing.JButton jbtnKirjaudu;
     private javax.swing.JButton jbtnLuo;
     private javax.swing.JButton jbtnRekisteröidy;
+    private javax.swing.JCheckBox jchkSalasana;
+    private javax.swing.JCheckBox jchkSalasana1;
     private javax.swing.JLabel jlblVahvista1;
-    private javax.swing.JTextField jtxtSalasana;
-    private javax.swing.JTextField jtxtSalasana1;
+    private javax.swing.JPasswordField jpswSalasana;
+    private javax.swing.JPasswordField jpswSalasana1;
+    private javax.swing.JPasswordField jpswSalasana2;
     private javax.swing.JTextField jtxtTunnus;
     private javax.swing.JTextField jtxtTunnus1;
-    private javax.swing.JTextField jtxtVahvista1;
     // End of variables declaration//GEN-END:variables
 }

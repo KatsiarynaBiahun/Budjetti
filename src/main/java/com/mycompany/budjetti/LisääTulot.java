@@ -5,11 +5,16 @@ import javax.swing.JOptionPane;
 public class LisääTulot extends javax.swing.JFrame {
 
     private Ohjelma paa;
+    private String txt;
 
-    public LisääTulot(Object ohjelma) {
+    public LisääTulot(Object ohjelma, String txt) {
         initComponents();
         this.setTitle("Lisää tulot, ole hyvä!");
         paa = (Ohjelma) ohjelma;
+        this.txt = txt; 
+        
+        //ota taustakuva käyttöön
+        jLabel5.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
     }
 
     @SuppressWarnings("unchecked")
@@ -108,8 +113,6 @@ public class LisääTulot extends javax.swing.JFrame {
         getContentPane().add(jradioInvestoinnit);
         jradioInvestoinnit.setBounds(150, 270, 130, 29);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\94630\\OneDrive\\Työpöytä\\gettyimages-472297015-2048x2048.jpg")); // NOI18N
-        jLabel5.setText("jLabel5");
         jLabel5.setPreferredSize(new java.awt.Dimension(400, 450));
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, 0, 400, 110);
@@ -158,11 +161,10 @@ public class LisääTulot extends javax.swing.JFrame {
         String merkkijono = tapahtuma.toString();
 
         //tapahtuma lisää Tulot.txt -asiakirjaan
-        String new_path = "Tulot.txt";
-        ReadFile.lisaaMerkkijono(merkkijono, new_path);
+        ReadFile.lisaaMerkkijono(merkkijono, txt);
 
         //tapahtuma-merkkijono välitetään Ohjelma pääluokalle
-        paa.presummaTulot(merkkijono);
+        paa.timer(merkkijono, this.txt, paa.modelTulot, paa.readTulot);
 
         JOptionPane.showMessageDialog(this, "Lisääminen onnistui. Lisä uudellen tai sulje ikkuna.");
 
@@ -204,7 +206,7 @@ public class LisääTulot extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LisääTulot("").setVisible(true);
+                new LisääTulot("","").setVisible(true);
             }
         });
     }

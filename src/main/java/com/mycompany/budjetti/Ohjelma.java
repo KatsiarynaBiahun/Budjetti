@@ -1,5 +1,6 @@
 package com.mycompany.budjetti;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.table.DefaultTableModel;
@@ -8,28 +9,35 @@ public class Ohjelma extends javax.swing.JFrame {
 
     public ReadFile readMenot = new ReadFile();
     public ReadFile readTulot = new ReadFile();
-    public DefaultTableModel model;
+    public DefaultTableModel modelMenot;
     public DefaultTableModel modelTulot;
-    public String menot = "Menot.txt";
-    public String tulot = "Tulot.txt";
+    public String menot;
+    public String tulot;
 
-    public Ohjelma(String tunnus) {
+    public Ohjelma(String tunnus, String MenotTiedostonNimi, String TulotTiedostonNimi) {
         initComponents();
         this.setTitle("Tervetuloa: " + tunnus);
 
-        model = (DefaultTableModel) jtblMenot.getModel();
+        this.menot = MenotTiedostonNimi;
+        this.tulot = TulotTiedostonNimi;
+
+        //ota taustakuva käyttöön
+        jLabel27.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
+        jLabel28.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
+
+        modelMenot = (DefaultTableModel) jtblMenot.getModel();
         modelTulot = (DefaultTableModel) jtblTulot.getModel();
-        readMenot.addLista(menot);
-        readTulot.addLista(tulot);
+        readMenot.addLista(this.menot);
+        readTulot.addLista(this.tulot);
 
         //metodit, jotka suorittavat suoraan
-        kaikkiMenot();
-        kaikkiTulot();
-        summa();
+            kaikki(modelMenot, readMenot, this.menot);
+            kaikki(modelTulot, readTulot, this.tulot);
+            summa();
     }
 
     public Ohjelma() {
-       
+
     }
 
     @SuppressWarnings("unchecked")
@@ -118,7 +126,7 @@ public class Ohjelma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(102, 204, 255));
-        setPreferredSize(new java.awt.Dimension(920, 730));
+        setPreferredSize(new java.awt.Dimension(980, 730));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -210,75 +218,63 @@ public class Ohjelma extends javax.swing.JFrame {
 
         jlblRuoka.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblRuoka.setForeground(new java.awt.Color(0, 204, 204));
-        jlblRuoka.setText("jLabel3");
         getContentPane().add(jlblRuoka);
-        jlblRuoka.setBounds(280, 140, 150, 30);
+        jlblRuoka.setBounds(280, 140, 210, 30);
 
         jlblAsunnonVuokraSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblAsunnonVuokraSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblAsunnonVuokraSumma.setText("jLabel4");
         getContentPane().add(jlblAsunnonVuokraSumma);
-        jlblAsunnonVuokraSumma.setBounds(280, 170, 150, 30);
+        jlblAsunnonVuokraSumma.setBounds(280, 170, 210, 30);
 
         jlblPuhelimenMaksuSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblPuhelimenMaksuSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblPuhelimenMaksuSumma.setText("jLabel5");
         getContentPane().add(jlblPuhelimenMaksuSumma);
-        jlblPuhelimenMaksuSumma.setBounds(280, 200, 150, 30);
+        jlblPuhelimenMaksuSumma.setBounds(280, 200, 210, 30);
 
         jlblMatkakorttiSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblMatkakorttiSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblMatkakorttiSumma.setText("jLabel6");
         getContentPane().add(jlblMatkakorttiSumma);
-        jlblMatkakorttiSumma.setBounds(280, 230, 150, 30);
+        jlblMatkakorttiSumma.setBounds(280, 230, 210, 30);
 
         jlblLaakkeetSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblLaakkeetSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblLaakkeetSumma.setText("jLabel7");
         getContentPane().add(jlblLaakkeetSumma);
-        jlblLaakkeetSumma.setBounds(280, 260, 150, 30);
+        jlblLaakkeetSumma.setBounds(280, 260, 210, 30);
 
         jlblSuoratoistapalvelunMaksuSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblSuoratoistapalvelunMaksuSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblSuoratoistapalvelunMaksuSumma.setText("jLabel8");
         getContentPane().add(jlblSuoratoistapalvelunMaksuSumma);
-        jlblSuoratoistapalvelunMaksuSumma.setBounds(280, 290, 150, 30);
+        jlblSuoratoistapalvelunMaksuSumma.setBounds(280, 290, 210, 30);
 
         jlblPalkkaSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblPalkkaSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblPalkkaSumma.setText("jLabel9");
         getContentPane().add(jlblPalkkaSumma);
-        jlblPalkkaSumma.setBounds(730, 140, 190, 30);
+        jlblPalkkaSumma.setBounds(730, 140, 210, 30);
 
         jlblLahjaSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblLahjaSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblLahjaSumma.setText("jLabel10");
         getContentPane().add(jlblLahjaSumma);
-        jlblLahjaSumma.setBounds(730, 170, 190, 30);
+        jlblLahjaSumma.setBounds(730, 170, 210, 30);
 
         jlblTukiSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblTukiSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblTukiSumma.setText("jLabel11");
         getContentPane().add(jlblTukiSumma);
-        jlblTukiSumma.setBounds(730, 200, 190, 30);
+        jlblTukiSumma.setBounds(730, 200, 210, 30);
 
         jlblMaksunPalautusSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblMaksunPalautusSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblMaksunPalautusSumma.setText("jLabel12");
         getContentPane().add(jlblMaksunPalautusSumma);
-        jlblMaksunPalautusSumma.setBounds(730, 230, 190, 30);
+        jlblMaksunPalautusSumma.setBounds(730, 230, 210, 30);
 
         jlblKiinteistöjenTulotSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblKiinteistöjenTulotSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblKiinteistöjenTulotSumma.setText("jLabel13");
         getContentPane().add(jlblKiinteistöjenTulotSumma);
-        jlblKiinteistöjenTulotSumma.setBounds(730, 260, 190, 30);
+        jlblKiinteistöjenTulotSumma.setBounds(730, 260, 210, 30);
 
         jlblInvestoinnitSumma.setFont(new java.awt.Font("Webdings", 0, 16)); // NOI18N
         jlblInvestoinnitSumma.setForeground(new java.awt.Color(0, 204, 204));
-        jlblInvestoinnitSumma.setText("jLabel14");
         getContentPane().add(jlblInvestoinnitSumma);
-        jlblInvestoinnitSumma.setBounds(730, 290, 190, 30);
+        jlblInvestoinnitSumma.setBounds(730, 290, 210, 30);
 
         jtblMenot.setFont(new java.awt.Font("Kristen ITC", 0, 10)); // NOI18N
         jtblMenot.setModel(new javax.swing.table.DefaultTableModel(
@@ -402,17 +398,13 @@ public class Ohjelma extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel26.setOpaque(true);
         getContentPane().add(jLabel26);
-        jLabel26.setBounds(0, 120, 920, 220);
-
-        jLabel27.setIcon(new javax.swing.ImageIcon("C:\\Users\\94630\\OneDrive\\Työpöytä\\gettyimages-472297015-2048x2048.jpg")); // NOI18N
-        jLabel27.setText("jLabel27");
+        jLabel26.setBounds(0, 120, 970, 220);
         getContentPane().add(jLabel27);
-        jLabel27.setBounds(0, 340, 920, 340);
+        jLabel27.setBounds(0, 340, 970, 340);
 
-        jLabel28.setIcon(new javax.swing.ImageIcon("C:\\Users\\94630\\OneDrive\\Työpöytä\\gettyimages-472297015-2048x2048.jpg")); // NOI18N
         jLabel28.setOpaque(true);
         getContentPane().add(jLabel28);
-        jLabel28.setBounds(0, 0, 920, 120);
+        jLabel28.setBounds(0, 0, 970, 120);
 
         jMenu2.setText("Lisää tapahtuma");
 
@@ -563,35 +555,16 @@ public class Ohjelma extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void presumma(String merkkijono) {
-        readMenot.addMerkkijono(merkkijono);
+    public void timer(String merkkijono, String txt,DefaultTableModel model,ReadFile read) {
+        read.addMerkkijono(merkkijono);
 
         TimerTask task = new TimerTask() {
             public void run() {
-                kaikkiMenot();
-
+                kaikki(model, read, txt);
                 summa();
             }
         };
         Timer timer = new Timer("Timer");
-
-        long delay = 1000L;
-        timer.schedule(task, delay);
-
-    }
-
-    public void presummaTulot(String merkkijono) {
-        readTulot.addMerkkijono(merkkijono);
-
-        TimerTask task = new TimerTask() {
-            public void run() {
-
-                kaikkiTulot();
-                summa();
-            }
-        };
-        Timer timer = new Timer("Timer");
-
         long delay = 1000L;
         timer.schedule(task, delay);
 
@@ -599,23 +572,23 @@ public class Ohjelma extends javax.swing.JFrame {
 
     public void summa() {
         //valittujen Menot -kategorian tapahtumien summa 
-        
-        double ruokaSumma = readMenot.summa("Menot.txt", "Ruoka");
+
+        double ruokaSumma = readMenot.summa(this.menot, "Ruoka");
         jtxtRuoka.setText(String.valueOf(ruokaSumma));
 
-        double asunnonVuokraSumma = readMenot.summa("Menot.txt", "Asunnon vuokra");
+        double asunnonVuokraSumma = readMenot.summa(this.menot, "Asunnon vuokra");
         jtxtAsunnonVuokra.setText(String.valueOf(asunnonVuokraSumma));
 
-        double puhelimenMaksuSumma = readMenot.summa("Menot.txt", "Puhelimen maksu");
+        double puhelimenMaksuSumma = readMenot.summa(this.menot, "Puhelimen maksu");
         jtxtPuhelimenMaksu.setText(String.valueOf(puhelimenMaksuSumma));
 
-        double matkakorttiSumma = readMenot.summa("Menot.txt", "Matkakortti");
+        double matkakorttiSumma = readMenot.summa(this.menot, "Matkakortti");
         jtxtMatkakortti.setText(String.valueOf(matkakorttiSumma));
 
-        double lääkkeetSumma = readMenot.summa("Menot.txt", "Lääkkeet");
+        double lääkkeetSumma = readMenot.summa(this.menot, "Lääkkeet");
         jtxtLääkkeet.setText(String.valueOf(lääkkeetSumma));
 
-        double suoratoistapalvelunMaksuSumma = readMenot.summa("Menot.txt", "Suoratoistapalvelun maksu");
+        double suoratoistapalvelunMaksuSumma = readMenot.summa(this.menot, "Suoratoistapalvelun maksu");
         jtxtSuoratoistapalvelunMaksu.setText(String.valueOf(suoratoistapalvelunMaksuSumma));
 
         //kuinka suuri prosenttiosuus tästä luokasta menojen kokonaismäärästä
@@ -628,23 +601,22 @@ public class Ohjelma extends javax.swing.JFrame {
         kaavio(kaavioMenot, suoratoistapalvelunMaksuSumma, jlblSuoratoistapalvelunMaksuSumma);
 
         //valittujen Tulot -kategorian tapahtumien summa 
-        
-        double palkkaSumma = readTulot.summa("Tulot.txt", "Palkka");
+        double palkkaSumma = readTulot.summa(this.tulot, "Palkka");
         jtxtPalkka.setText(String.valueOf(palkkaSumma));
 
-        double lahjaSumma = readTulot.summa("Tulot.txt", "Lahja");
+        double lahjaSumma = readTulot.summa(this.tulot, "Lahja");
         jtxtLahja.setText(String.valueOf(lahjaSumma));
 
-        double tukiSumma = readTulot.summa("Tulot.txt", "Tuki");
+        double tukiSumma = readTulot.summa(this.tulot, "Tuki");
         jtxtTuki.setText(String.valueOf(tukiSumma));
 
-        double maksunPalautusSumma = readTulot.summa("Tulot.txt", "Maksun palautus");
+        double maksunPalautusSumma = readTulot.summa(this.tulot, "Maksun palautus");
         jtxtMaksunPalautus.setText(String.valueOf(maksunPalautusSumma));
 
-        double kiinteistöjenTulotSumma = readTulot.summa("Tulot.txt", "Kiinteistöjen tulot");
+        double kiinteistöjenTulotSumma = readTulot.summa(this.tulot, "Kiinteistöjen tulot");
         jtxtKiinteistöjenTulot.setText(String.valueOf(kiinteistöjenTulotSumma));
 
-        double investoinnitSumma = readTulot.summa("Tulot.txt", "Investoinnit");
+        double investoinnitSumma = readTulot.summa(this.tulot, "Investoinnit");
         jtxtInvestoinnit.setText(String.valueOf(investoinnitSumma));
 
         //kuinka suuri prosenttiosuus tästä luokasta menojen kokonaismäärästä
@@ -685,7 +657,7 @@ public class Ohjelma extends javax.swing.JFrame {
         }
     }
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        LisääMenot menot = new LisääMenot(this);
+        LisääMenot menot = new LisääMenot(this, this.menot);
         menot.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -698,60 +670,42 @@ public class Ohjelma extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxtMatkakorttiActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        LisääTulot tulot = new LisääTulot(this);
+        LisääTulot tulot = new LisääTulot(this, this.tulot);
         tulot.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // Kaikki Menot-tapahtumat
-        kaikkiMenot();
+        kaikki(modelMenot, readMenot, this.menot);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    public void kaikkiMenot() {
+    public void kaikki(DefaultTableModel model, ReadFile read, String tiedostonNimi) {
         // Kaikki Menot -tapahtumat ilmestyy JTableen
         model.setRowCount(0);
-        String fileMenot = readMenot.readKaikkiTapahtumat(menot);
-        String[] palat = fileMenot.split("\n");
+        String file = read.readKaikkiTapahtumat(tiedostonNimi);
+        String[] palat = file.split("\n");
 
         for (String pala : palat) {
             String[] pikkupalat = pala.split(",");
             if (pikkupalat.length == 2) {
                 String[] data = {pikkupalat[0], pikkupalat[1]};
                 model.addRow(data);
-            } else {
+            } else if (pikkupalat.length == 3) {
                 String[] data = {pikkupalat[0], pikkupalat[1], pikkupalat[2]};
                 model.addRow(data);
             }
         }
     }
-
-    public void kaikkiTulot() {
-        // Kaikki Tulot -tapahtumat ilmestyy JTableen
-        modelTulot.setRowCount(0);
-        String fileTulot = readTulot.readKaikkiTapahtumat(tulot);
-        String[] palatTulot = fileTulot.split("\n");
-
-        for (String palaTulot : palatTulot) {
-            String[] pikkupalatTulot = palaTulot.split(",");
-            if (pikkupalatTulot.length == 2) {
-                String[] data = {pikkupalatTulot[0], pikkupalatTulot[1]};
-                modelTulot.addRow(data);
-            } else if (pikkupalatTulot.length == 3) {
-                String[] dataTulot = {pikkupalatTulot[0], pikkupalatTulot[1], pikkupalatTulot[2]};
-                modelTulot.addRow(dataTulot);
-            }
-        }
-    }
-
+    
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         String kategoria = "Ruoka";
-        TaulukkoMenot(menot, kategoria);
+        Taulukko(modelMenot, readMenot, this.menot, kategoria);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    public void TaulukkoMenot(String txt, String kategoria) {
+    public void Taulukko(DefaultTableModel model, ReadFile read, String txt, String kategoria) {
         // Vain vallitun kategorian tapahtumat ilmestyy JTableen
         model.setRowCount(0);
-        String file = readMenot.readTapahtuma(txt, kategoria);
+        String file = read.readTapahtuma(txt, kategoria);
         String[] palat = file.split("\n");
 
         for (String pala : palat) {
@@ -768,49 +722,29 @@ public class Ohjelma extends javax.swing.JFrame {
         }
     }
 
-    public void TaulukkoTulot(String txt, String kategoria) {
-        // Vain vallitun kategorian tapahtumat ilmestyy JTableen
-        modelTulot.setRowCount(0);
-        String file = readTulot.readTapahtuma(txt, kategoria);
-        String[] palat = file.split("\n");
-
-        for (String pala : palat) {
-            String[] pikkupalat = pala.split(",");
-            if (pikkupalat.length == 2) {
-                String[] data = {pikkupalat[0], pikkupalat[1]};
-                modelTulot.addRow(data);
-            } else if (pikkupalat.length == 3) {
-                String[] dataTulot = {pikkupalat[0], pikkupalat[1], pikkupalat[2]};
-                modelTulot.addRow(dataTulot);
-            } else {
-                break;
-            }
-        }
-    }
-
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         String kategoria = "Asunnon vuokra";
-        TaulukkoMenot(menot, kategoria);
+        Taulukko(modelMenot, readMenot, this.menot, kategoria);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         String kategoria = "Puhelimen maksu";
-        TaulukkoMenot(menot, kategoria);
+        Taulukko(modelMenot, readMenot, this.menot, kategoria);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         String kategoria = "Matkakortti";
-        TaulukkoMenot(menot, kategoria);
+        Taulukko(modelMenot, readMenot, this.menot, kategoria);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         String kategoria = "Lääkkeet";
-        TaulukkoMenot(menot, kategoria);
+        Taulukko(modelMenot, readMenot, this.menot, kategoria);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         String kategoria = "Suoratoistapalvelun maksu";
-        TaulukkoMenot(menot, kategoria);
+        Taulukko(modelMenot, readMenot, this.menot, kategoria);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jtxtRuokaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtRuokaActionPerformed
@@ -818,37 +752,37 @@ public class Ohjelma extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxtRuokaActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        kaikkiTulot();
+        kaikki(modelTulot, readTulot, this.tulot);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         String kategoria = "Palkka";
-        TaulukkoTulot(tulot, kategoria);
+        Taulukko(modelTulot, readTulot, this.tulot, kategoria);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         String kategoria = "Lahja";
-        TaulukkoTulot(tulot, kategoria);
+        Taulukko(modelTulot, readTulot, this.tulot, kategoria);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         String kategoria = "Tuki";
-        TaulukkoTulot(tulot, kategoria);
+        Taulukko(modelTulot, readTulot, this.tulot, kategoria);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         String kategoria = "Maksun palautus";
-        TaulukkoTulot(tulot, kategoria);
+        Taulukko(modelTulot, readTulot, this.tulot, kategoria);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         String kategoria = "Kiinteistöjen tulot";
-        TaulukkoTulot(tulot, kategoria);
+        Taulukko(modelTulot, readTulot, this.tulot, kategoria);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         String kategoria = "Investoinnit";
-        TaulukkoTulot(tulot, kategoria);
+        Taulukko(modelTulot, readTulot, this.tulot, kategoria);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     /**
@@ -881,7 +815,7 @@ public class Ohjelma extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ohjelma("").setVisible(true);
+                new Ohjelma().setVisible(true);
             }
         });
     }

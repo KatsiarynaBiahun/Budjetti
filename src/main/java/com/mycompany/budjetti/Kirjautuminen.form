@@ -40,40 +40,48 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" pref="90" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jtxtTunnus1" min="-2" pref="178" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
-                          <Component id="jLabel7" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jtxtSalasana1" min="-2" pref="178" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="jlblVahvista1" min="-2" pref="180" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jtxtVahvista1" min="-2" pref="178" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jpswSalasana2" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" pref="90" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
+                                  <Component id="jLabel7" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jpswSalasana1" min="-2" pref="178" max="-2" attributes="0"/>
+                              <Component id="jtxtTunnus1" min="-2" pref="178" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jbtnRekisteröidy" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jbtnRekisteröidy" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="jchkSalasana1" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" pref="500" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel9" min="-2" pref="600" max="-2" attributes="0"/>
-                          <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel10" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -83,27 +91,24 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="169" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtxtTunnus1" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtxtSalasana1" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jlblVahvista1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtxtVahvista1" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="jbtnRekisteröidy" min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace pref="166" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jtxtTunnus1" max="32767" attributes="0"/>
+                      <Component id="jLabel6" pref="30" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jpswSalasana1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jchkSalasana1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jlblVahvista1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jpswSalasana2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jbtnRekisteröidy" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -143,11 +148,18 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnRekister&#xf6;idyActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JCheckBox" name="jchkSalasana1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Kristen ITC" size="10" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="N&#xe4;yt&#xe4; salasana"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jchkSalasana1ActionPerformed"/>
+          </Events>
+        </Component>
         <Component class="javax.swing.JTextField" name="jtxtTunnus1">
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtxtSalasana1">
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtxtVahvista1">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -181,13 +193,9 @@
             <Property name="text" type="java.lang.String" value="Tervetuloa oman Budjettiin"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel9">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\94630\OneDrive\Ty&#xf6;p&#xf6;yt&#xe4;\gettyimages-472297015-2048x2048.jpg"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="jLabel5"/>
-          </Properties>
+        <Component class="javax.swing.JPasswordField" name="jpswSalasana1">
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="jpswSalasana2">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
@@ -196,6 +204,8 @@
             </Property>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel9">
         </Component>
       </SubComponents>
     </Container>
@@ -273,24 +283,34 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="400" y="210" width="150" height="-1"/>
+          <AbsoluteConstraints x="400" y="20" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtxtSalasana">
+    <Component class="javax.swing.JPasswordField" name="jpswSalasana">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="200" y="210" width="178" height="30"/>
+          <AbsoluteConstraints x="200" y="210" width="180" height="30"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jchkSalasana">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Kristen ITC" size="10" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="N&#xe4;yt&#xe4; salasana"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jchkSalasanaActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="400" y="210" width="150" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\94630\OneDrive\Ty&#xf6;p&#xf6;yt&#xe4;\gettyimages-472297015-2048x2048.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel5"/>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="0" y="0" width="600" height="160"/>

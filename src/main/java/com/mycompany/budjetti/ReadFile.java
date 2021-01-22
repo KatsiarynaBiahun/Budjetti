@@ -1,5 +1,7 @@
 package com.mycompany.budjetti;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -29,6 +31,24 @@ public class ReadFile {
         return false;
     }
 
+     public static void saveToFile(String text, char[] pass, String txt) {
+         //lisätään tunnus ja salasana txt-tiedostoon
+        StringBuilder SS = new StringBuilder("");
+        for (char ch : pass) {
+            SS = SS.append(ch);
+        }
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(txt, true));
+            writer.append(text + "," + SS);
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+     
     public String readTapahtuma(String txt, String kategoria) {
         // luetaan vallitun kategorian tapahtumat this.rivit listasta jotta ne ilmestyy JTableen
         ArrayList<String> kategoriaOnLista = new ArrayList<>();

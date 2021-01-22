@@ -1,0 +1,4 @@
+Asunnon vuokra,500.0,
+Ruoka,33.0,
+Suoratoistapalvelun maksu,50.0,
+Matkakortti,200.0,
