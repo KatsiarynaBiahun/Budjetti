@@ -6,13 +6,13 @@ public class LisääMenot extends javax.swing.JFrame {
 
     private Ohjelma paa;
     private String txt;
-    
+
     public LisääMenot(Object ohjelma, String txt) {
         initComponents();
         this.setTitle("Lisää menot, ole hyvä!");
         paa = (Ohjelma) ohjelma;
         this.txt = txt;
-        
+
         //ota taustakuva käyttöön
         jLabel5.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
     }
@@ -60,7 +60,7 @@ public class LisääMenot extends javax.swing.JFrame {
         jradioLääkkeet.setBounds(150, 240, 91, 29);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
-        jLabel2.setText("Lasku, € :");
+        jLabel2.setText("Lasku, € *");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(50, 300, 90, 25);
 
@@ -71,7 +71,7 @@ public class LisääMenot extends javax.swing.JFrame {
         jradioSuoratoistapalvelunMaksu.setBounds(150, 270, 230, 21);
 
         jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
-        jLabel3.setText("Muistiinpano :");
+        jLabel3.setText("Muistiinpano");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(10, 340, 130, 25);
 
@@ -98,9 +98,9 @@ public class LisääMenot extends javax.swing.JFrame {
         jbtnLisaa.setBounds(150, 390, 80, 30);
 
         jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
-        jLabel1.setText("Kategoria :");
+        jLabel1.setText("Kategoria *");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 120, 100, 19);
+        jLabel1.setBounds(30, 120, 110, 19);
 
         buttonGroup1.add(jradioPuhelimenMaksu);
         jradioPuhelimenMaksu.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
@@ -133,44 +133,58 @@ public class LisääMenot extends javax.swing.JFrame {
         jradioLääkkeet.setActionCommand("Laakkeet");
         jradioSuoratoistapalvelunMaksu.setActionCommand("SuoratoistapalvelunMaksu");
 
-        String kategoria = "";
-        double lasku = Double.valueOf(jtxtLasku.getText());
-        String muistiinpano = jtxtMuistiinpano.getText();
-
-        if (buttonGroup1.getSelection().getActionCommand() == "Ruoka") {
-            kategoria = "Ruoka";
+        try {
+           Double.parseDouble(jtxtLasku.getText());
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Lasku on pakko olla lukuna.");
         }
-        if (buttonGroup1.getSelection().getActionCommand() == "AsunnonVuokra") {
-            kategoria = "Asunnon vuokra";
-        }
-        if (buttonGroup1.getSelection().getActionCommand() == "PuhelimenMaksu") {
-            kategoria = "Puhelimen maksu";
-        }
-        if (buttonGroup1.getSelection().getActionCommand() == "Matkakortti") {
-            kategoria = "Matkakortti";
-        }
-        if (buttonGroup1.getSelection().getActionCommand() == "Laakkeet") {
-            kategoria = "Laakkeet";
-        }
-        if (buttonGroup1.getSelection().getActionCommand() == "SuoratoistapalvelunMaksu") {
-            kategoria = "Suoratoistapalvelun maksu";
-        }
-
-        //tapahtuma luetaan oikeassa muodossa Tapahtuma luokan avulla
-        Tapahtuma tapahtuma = new Tapahtuma(kategoria, lasku, muistiinpano);
-        String merkkijono = tapahtuma.toString();
         
-        //tapahtuma lisää Menot.txt -asiakirjaan
-        ReadFile.lisaaMerkkijono(merkkijono, this.txt);
-  
-        //tapahtuma-merkkijono välitetään Ohjelma pääluokalle
-        paa.timer(merkkijono, this.txt, paa.modelMenot, paa.readMenot);
-        
-        JOptionPane.showMessageDialog(this, "Lisääminen onnistui. Lisä uudellen tai sulje ikkuna.");
-       
-        buttonGroup1.clearSelection();
-        jtxtLasku.setText("");
-        jtxtMuistiinpano.setText("");
+        if (!(buttonGroup1.getSelection() == null || jtxtLasku.getText().isEmpty())) {
+            
+            String kategoria = "";
+            double lasku = Double.valueOf(jtxtLasku.getText());
+            String muistiinpano = jtxtMuistiinpano.getText();
+
+            if (buttonGroup1.getSelection().getActionCommand() == "Ruoka") {
+                kategoria = "Ruoka";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "AsunnonVuokra") {
+                kategoria = "Asunnon vuokra";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "PuhelimenMaksu") {
+                kategoria = "Puhelimen maksu";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "Matkakortti") {
+                kategoria = "Matkakortti";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "Laakkeet") {
+                kategoria = "Laakkeet";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "SuoratoistapalvelunMaksu") {
+                kategoria = "Suoratoistapalvelun maksu";
+            }
+
+            //tapahtuma luetaan oikeassa muodossa Tapahtuma luokan avulla
+            Tapahtuma tapahtuma = new Tapahtuma(kategoria, lasku, muistiinpano);
+            String merkkijono = tapahtuma.toString();
+
+            //tapahtuma lisää Menot.txt -asiakirjaan
+            ReadFile.lisaaMerkkijono(merkkijono, this.txt);
+
+            //tapahtuma-merkkijono välitetään Ohjelma pääluokalle
+            paa.timer(merkkijono, this.txt, paa.modelMenot, paa.readMenot);
+
+            JOptionPane.showMessageDialog(this, "Lisääminen onnistui. Lisä uudellen tai sulje ikkuna.");
+
+            buttonGroup1.clearSelection();
+            jtxtLasku.setText("");
+            jtxtMuistiinpano.setText("");
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Kategoria tai laskun summa on tyhjä. Kirjoita sen ja yritä uudelleen.");
+        }
+
+
     }//GEN-LAST:event_jbtnLisaaActionPerformed
 
     /**
@@ -204,7 +218,7 @@ public class LisääMenot extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LisääMenot("","").setVisible(true);
+                new LisääMenot("", "").setVisible(true);
             }
         });
     }

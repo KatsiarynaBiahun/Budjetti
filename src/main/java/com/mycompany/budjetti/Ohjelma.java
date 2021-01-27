@@ -81,6 +81,8 @@ public class Ohjelma extends javax.swing.JFrame {
         jtblMenot = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtblTulot = new javax.swing.JTable();
+        jlblYhteensaMenot = new javax.swing.JLabel();
+        jlblYhteensaTulot = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -211,7 +213,6 @@ public class Ohjelma extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Kristen ITC", 0, 36)); // NOI18N
         jLabel1.setText("Menot");
-        jLabel1.setPreferredSize(new java.awt.Dimension(119, 49));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(180, 50, 130, 49);
 
@@ -338,6 +339,14 @@ public class Ohjelma extends javax.swing.JFrame {
         getContentPane().add(jScrollPane4);
         jScrollPane4.setBounds(540, 350, 340, 307);
 
+        jlblYhteensaMenot.setFont(new java.awt.Font("Kristen ITC", 0, 12)); // NOI18N
+        getContentPane().add(jlblYhteensaMenot);
+        jlblYhteensaMenot.setBounds(200, 110, 110, 20);
+
+        jlblYhteensaTulot.setFont(new java.awt.Font("Kristen ITC", 0, 12)); // NOI18N
+        getContentPane().add(jlblYhteensaTulot);
+        jlblYhteensaTulot.setBounds(650, 110, 110, 20);
+
         jLabel3.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel3.setText("Ruoka :");
         getContentPane().add(jLabel3);
@@ -402,13 +411,13 @@ public class Ohjelma extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel26.setOpaque(true);
         getContentPane().add(jLabel26);
-        jLabel26.setBounds(0, 120, 990, 220);
+        jLabel26.setBounds(0, 100, 990, 240);
         getContentPane().add(jLabel27);
         jLabel27.setBounds(0, 340, 990, 340);
 
         jLabel28.setOpaque(true);
         getContentPane().add(jLabel28);
-        jLabel28.setBounds(0, 0, 990, 120);
+        jLabel28.setBounds(0, 0, 990, 100);
 
         jMenu2.setText("Lisää tapahtuma ");
 
@@ -609,6 +618,9 @@ public class Ohjelma extends javax.swing.JFrame {
 
         //kuinka suuri prosenttiosuus tästä luokasta menojen kokonaismäärästä
         double kaavioMenot = ruokaSumma + asunnonVuokraSumma + puhelimenMaksuSumma + matkakorttiSumma + lääkkeetSumma + suoratoistapalvelunMaksuSumma;
+        //Yhteensä -kenttä
+        jlblYhteensaMenot.setText("Yhteensä: " + String.format("%.1f",kaavioMenot) + " €");
+        
         kaavio(kaavioMenot, ruokaSumma, jlblRuoka);
         kaavio(kaavioMenot, asunnonVuokraSumma, jlblAsunnonVuokraSumma);
         kaavio(kaavioMenot, puhelimenMaksuSumma, jlblPuhelimenMaksuSumma);
@@ -637,6 +649,9 @@ public class Ohjelma extends javax.swing.JFrame {
 
         //kuinka suuri prosenttiosuus tästä luokasta menojen kokonaismäärästä
         double kaavioTulot = palkkaSumma + lahjaSumma + tukiSumma + maksunPalautusSumma + kiinteistöjenTulotSumma + investoinnitSumma;
+        //Yhteensä -kenttä
+        jlblYhteensaTulot.setText("Yhteensä: " + String.format("%.1f",kaavioMenot) + " €");
+        
         kaavio(kaavioTulot, palkkaSumma, jlblPalkkaSumma);
         kaavio(kaavioTulot, lahjaSumma, jlblLahjaSumma);
         kaavio(kaavioTulot, tukiSumma, jlblTukiSumma);
@@ -907,6 +922,8 @@ public class Ohjelma extends javax.swing.JFrame {
     private javax.swing.JLabel jlblRuoka;
     private javax.swing.JLabel jlblSuoratoistapalvelunMaksuSumma;
     private javax.swing.JLabel jlblTukiSumma;
+    private javax.swing.JLabel jlblYhteensaMenot;
+    private javax.swing.JLabel jlblYhteensaTulot;
     private javax.swing.JTable jtblMenot;
     private javax.swing.JTable jtblTulot;
     private javax.swing.JTextField jtxtAsunnonVuokra;

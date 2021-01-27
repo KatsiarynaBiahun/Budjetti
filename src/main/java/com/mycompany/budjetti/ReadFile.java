@@ -106,6 +106,17 @@ public class ReadFile {
         }
 
     }
+    
+    public void rewriting(String txt, String syötö){
+        System.out.println(syötö);
+        for (String rivi : this.rivit){
+            if (!(rivi.equals(syötö))){
+                System.out.println(rivi);
+                
+                lisaaMerkkijono(rivi, txt);
+            }
+        }
+    }
 
     public static void lisaaMerkkijono(String merkkijono, String new_path) {
         //lisätään merkijonoa txt-tiedostoon

@@ -31,7 +31,7 @@ public class Kirjautuminen extends javax.swing.JFrame {
         jpswSalasana.setEchoChar('');
         jpswSalasana1.setEchoChar('');
         jpswSalasana2.setEchoChar('');
-    }
+}
 
     public void sulje() {
         WindowEvent winClosingEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
@@ -145,8 +145,8 @@ public class Kirjautuminen extends javax.swing.JFrame {
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(80, 80, 80)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jpswSalasana1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jtxtTunnus1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -364,29 +364,29 @@ public class Kirjautuminen extends javax.swing.JFrame {
         tunnus = jtxtTunnus1.getText();
         salasana = jpswSalasana1.getPassword();
         vahvista = jpswSalasana2.getPassword();
-        String syötö = tunnus + "," + "salasana";
+        String syötö = tunnus + "," + String.valueOf(salasana);
         try {
             if (tunnus.length() == 0 || salasana.length == 0) {
                 JOptionPane.showMessageDialog(null, "Merkintä jostakin kentästä puuttuu. Yritä uudelleen.", "Virhe", JOptionPane.ERROR_MESSAGE);
             } else {
                 if (String.valueOf(salasana).equals(String.valueOf(vahvista))) {
 
-                    /* //удвлить строку в фацлк с этим польщователем
-                  try  (Scanner lukija = new Scanner(Paths.get(txt))){
-                   
-                              while (lukija.hasNextLine())  {
-                                  String rivi = lukija.nextLine();
-                                  if (rivi.equals(syötö)){
-                                     
-                                      
-                                  }
-                              }
-                            
-                  } catch (Exception e){
-                      
-                  }
+                    //
+                    ReadFile poista = new ReadFile();
+                    poista.addLista("tiedot.txt");
                     
-                     */
+                    File uusiTiedot = new File("tiedot1.txt");
+                    uusiTiedot.createNewFile();
+                    poista.rewriting("tiedot1.txt", syötö);
+                    
+                    //poistaa vanha tiedosto;
+                    File vanhaTiedot = new File("tiedot.txt");
+                    vanhaTiedot.delete();
+                    
+                    //nimeä uudelleen
+                    File upouusiTiedot = new File("tiedot.txt");
+                    uusiTiedot.renameTo(upouusiTiedot);
+                  
                     MenotTiedostonNimi = jtxtTunnus1.getText() + "Menot.txt";
                     TulotTiedostonNimi = jtxtTunnus1.getText() + "Tulot.txt";
                     File MenotTiedosto = new File(MenotTiedostonNimi);

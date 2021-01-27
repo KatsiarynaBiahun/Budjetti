@@ -11,3 +11,5 @@ Tuki,400.0,
 Investoinnit,1000.0,01.02
 Lahja,30.0,
 Kiinteistöjen tulot,34.0,
+Maksun palautus,7.0,
+Maksun palautus,5.0,

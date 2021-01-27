@@ -11,8 +11,8 @@ public class LisääTulot extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Lisää tulot, ole hyvä!");
         paa = (Ohjelma) ohjelma;
-        this.txt = txt; 
-        
+        this.txt = txt;
+
         //ota taustakuva käyttöön
         jLabel5.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
     }
@@ -60,12 +60,12 @@ public class LisääTulot extends javax.swing.JFrame {
         jradioKiinteistöjenTulot.setBounds(150, 240, 160, 29);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
-        jLabel2.setText("Lasku, € :");
+        jLabel2.setText("Lasku, € *");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(50, 300, 90, 25);
 
         jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
-        jLabel3.setText("Muistiinpano :");
+        jLabel3.setText("Muistiinpano ");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(10, 340, 130, 25);
 
@@ -92,7 +92,7 @@ public class LisääTulot extends javax.swing.JFrame {
         jbtnLisaa.setBounds(150, 390, 79, 33);
 
         jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
-        jLabel1.setText("Kategoria :");
+        jLabel1.setText("Kategoria *");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(30, 120, 110, 19);
 
@@ -133,44 +133,56 @@ public class LisääTulot extends javax.swing.JFrame {
         jradioKiinteistöjenTulot.setActionCommand("Kiinteistöjen Tulot");
         jradioInvestoinnit.setActionCommand("Investoinnit");
 
-        String kategoria = "";
-        double lasku = Double.valueOf(jtxtLasku.getText());
-        String muistiinpano = jtxtMuistiinpano.getText();
-
-        if (buttonGroup1.getSelection().getActionCommand() == "Palkka") {
-            kategoria = "Palkka";
+        try {
+           Double.parseDouble(jtxtLasku.getText());
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Lasku on pakko olla lukuna.");
         }
-        if (buttonGroup1.getSelection().getActionCommand() == "Lahja") {
-            kategoria = "Lahja";
-        }
-        if (buttonGroup1.getSelection().getActionCommand() == "Tuki") {
-            kategoria = "Tuki";
-        }
-        if (buttonGroup1.getSelection().getActionCommand() == "Maksun Palautus") {
-            kategoria = "Maksun palautus";
-        }
-        if (buttonGroup1.getSelection().getActionCommand() == "Kiinteistöjen Tulot") {
-            kategoria = "Kiinteistöjen tulot";
-        }
-        if (buttonGroup1.getSelection().getActionCommand() == "Investoinnit") {
-            kategoria = "Investoinnit";
-        }
+        
+        if (!(buttonGroup1.getSelection() == null || jtxtLasku.getText().isEmpty())) {
+            
+            String kategoria = "";
+            double lasku = Double.valueOf(jtxtLasku.getText());
+            String muistiinpano = jtxtMuistiinpano.getText();
 
-        //tapahtuma luetaan oikeassa muodossa Tapahtuma luokan avulla
-        Tapahtuma tapahtuma = new Tapahtuma(kategoria, lasku, muistiinpano);
-        String merkkijono = tapahtuma.toString();
+            if (buttonGroup1.getSelection().getActionCommand() == "Palkka") {
+                kategoria = "Palkka";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "Lahja") {
+                kategoria = "Lahja";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "Tuki") {
+                kategoria = "Tuki";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "Maksun Palautus") {
+                kategoria = "Maksun palautus";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "Kiinteistöjen Tulot") {
+                kategoria = "Kiinteistöjen tulot";
+            }
+            if (buttonGroup1.getSelection().getActionCommand() == "Investoinnit") {
+                kategoria = "Investoinnit";
+            }
 
-        //tapahtuma lisää Tulot.txt -asiakirjaan
-        ReadFile.lisaaMerkkijono(merkkijono, txt);
+            //tapahtuma luetaan oikeassa muodossa Tapahtuma luokan avulla
+            Tapahtuma tapahtuma = new Tapahtuma(kategoria, lasku, muistiinpano);
+            String merkkijono = tapahtuma.toString();
 
-        //tapahtuma-merkkijono välitetään Ohjelma pääluokalle
-        paa.timer(merkkijono, this.txt, paa.modelTulot, paa.readTulot);
+            //tapahtuma lisää Tulot.txt -asiakirjaan
+            ReadFile.lisaaMerkkijono(merkkijono, txt);
 
-        JOptionPane.showMessageDialog(this, "Lisääminen onnistui. Lisä uudellen tai sulje ikkuna.");
+            //tapahtuma-merkkijono välitetään Ohjelma pääluokalle
+            paa.timer(merkkijono, this.txt, paa.modelTulot, paa.readTulot);
 
-        buttonGroup1.clearSelection();
-        jtxtLasku.setText("");
-        jtxtMuistiinpano.setText("");
+            JOptionPane.showMessageDialog(this, "Lisääminen onnistui. Lisä uudellen tai sulje ikkuna.");
+
+            buttonGroup1.clearSelection();
+            jtxtLasku.setText("");
+            jtxtMuistiinpano.setText("");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Kategoria tai laskun summa on tyhjä. Kirjoita sen ja yritä uudelleen.");
+        }
     }//GEN-LAST:event_jbtnLisaaActionPerformed
 
     /**
@@ -206,7 +218,7 @@ public class LisääTulot extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LisääTulot("","").setVisible(true);
+                new LisääTulot("", "").setVisible(true);
             }
         });
     }
