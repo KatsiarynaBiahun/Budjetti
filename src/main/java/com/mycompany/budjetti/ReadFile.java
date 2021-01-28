@@ -30,6 +30,22 @@ public class ReadFile {
         }
         return false;
     }
+    
+    //kun nimi on jo varattu
+    public boolean readVainNimi(String tunnus, String txt) {
+        
+        //lisätään kaikki rivit txt -tiedostosta ArrayListaan  
+        addLista(txt);
+        //verrataan ArrayListan jokaisen rivi syötöön 
+        for (String jono : this.rivit) {
+            String[] palat = jono.split(",");
+            String etsittava = palat[0];
+            if (tunnus.equals(etsittava)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
      public static void saveToFile(String text, char[] pass, String txt) {
          //lisätään tunnus ja salasana txt-tiedostoon
@@ -108,11 +124,8 @@ public class ReadFile {
     }
     
     public void rewriting(String txt, String syötö){
-        System.out.println(syötö);
         for (String rivi : this.rivit){
             if (!(rivi.equals(syötö))){
-                System.out.println(rivi);
-                
                 lisaaMerkkijono(rivi, txt);
             }
         }

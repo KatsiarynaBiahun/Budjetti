@@ -1,5 +1,6 @@
 package com.mycompany.budjetti;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class LisääTulot extends javax.swing.JFrame {
@@ -14,7 +15,9 @@ public class LisääTulot extends javax.swing.JFrame {
         this.txt = txt;
 
         //ota taustakuva käyttöön
-        jLabel5.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
+        Image uusi = new Image();
+        ImageIcon label5 = uusi.loadIcon("/taustakuva.jpg");
+        jLabel5.setIcon(label5);
     }
 
     @SuppressWarnings("unchecked")
@@ -60,9 +63,9 @@ public class LisääTulot extends javax.swing.JFrame {
         jradioKiinteistöjenTulot.setBounds(150, 240, 160, 29);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
-        jLabel2.setText("Lasku, € *");
+        jLabel2.setText("Summa, € *");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(50, 300, 90, 25);
+        jLabel2.setBounds(30, 300, 110, 25);
 
         jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jLabel3.setText("Muistiinpano ");
@@ -134,15 +137,21 @@ public class LisääTulot extends javax.swing.JFrame {
         jradioInvestoinnit.setActionCommand("Investoinnit");
 
         try {
-           Double.parseDouble(jtxtLasku.getText());
-        } catch (Exception e){
+            Double.parseDouble(jtxtLasku.getText());
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lasku on pakko olla lukuna.");
+            return;
+        }
+
+        double lasku = Double.valueOf(jtxtLasku.getText());
+        if (lasku <= 0) {
+            JOptionPane.showMessageDialog(this, "Lasku on pakko olla ennemmän kuin nolla.");
+            return;
         }
         
         if (!(buttonGroup1.getSelection() == null || jtxtLasku.getText().isEmpty())) {
-            
+
             String kategoria = "";
-            double lasku = Double.valueOf(jtxtLasku.getText());
             String muistiinpano = jtxtMuistiinpano.getText();
 
             if (buttonGroup1.getSelection().getActionCommand() == "Palkka") {

@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 public class Ohjelma extends javax.swing.JFrame {
@@ -24,9 +25,11 @@ public class Ohjelma extends javax.swing.JFrame {
         this.tulot = TulotTiedostonNimi;
 
         //ota taustakuva käyttöön
-        jLabel27.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
-        jLabel28.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
-
+        Image uusi = new Image();
+        ImageIcon label27 = uusi.loadIcon("/taustakuva.jpg");
+        jLabel27.setIcon(label27);
+        jLabel28.setIcon(label27);
+        
         modelMenot = (DefaultTableModel) jtblMenot.getModel();
         modelTulot = (DefaultTableModel) jtblTulot.getModel();
         readMenot.addLista(this.menot);
@@ -341,11 +344,11 @@ public class Ohjelma extends javax.swing.JFrame {
 
         jlblYhteensaMenot.setFont(new java.awt.Font("Kristen ITC", 0, 12)); // NOI18N
         getContentPane().add(jlblYhteensaMenot);
-        jlblYhteensaMenot.setBounds(200, 110, 110, 20);
+        jlblYhteensaMenot.setBounds(200, 110, 320, 20);
 
         jlblYhteensaTulot.setFont(new java.awt.Font("Kristen ITC", 0, 12)); // NOI18N
         getContentPane().add(jlblYhteensaTulot);
-        jlblYhteensaTulot.setBounds(650, 110, 110, 20);
+        jlblYhteensaTulot.setBounds(650, 110, 320, 20);
 
         jLabel3.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
         jLabel3.setText("Ruoka :");
@@ -439,11 +442,11 @@ public class Ohjelma extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu7.setText("Katso kaikki tapahtumat ");
+        jMenu7.setText("Suodata ");
 
-        jMenu1.setText("Valitse Menot-kategoriasta");
+        jMenu1.setText("Menot-kategoriasta");
 
-        jMenuItem1.setText("Kaikki Menot-tapahtumat");
+        jMenuItem1.setText("Kaikki tapahtumat");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -501,9 +504,9 @@ public class Ohjelma extends javax.swing.JFrame {
 
         jMenu7.add(jMenu1);
 
-        jMenu3.setText("Valitse Tulot-kategoriasta");
+        jMenu3.setText("Tulot-kategoriasta");
 
-        jMenuItem9.setText("Kaikki Tulot-tapahtumat");
+        jMenuItem9.setText("Kaikki tapahtumat");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -650,7 +653,7 @@ public class Ohjelma extends javax.swing.JFrame {
         //kuinka suuri prosenttiosuus tästä luokasta menojen kokonaismäärästä
         double kaavioTulot = palkkaSumma + lahjaSumma + tukiSumma + maksunPalautusSumma + kiinteistöjenTulotSumma + investoinnitSumma;
         //Yhteensä -kenttä
-        jlblYhteensaTulot.setText("Yhteensä: " + String.format("%.1f",kaavioMenot) + " €");
+        jlblYhteensaTulot.setText("Yhteensä: " + String.format("%.1f",kaavioTulot) + " €");
         
         kaavio(kaavioTulot, palkkaSumma, jlblPalkkaSumma);
         kaavio(kaavioTulot, lahjaSumma, jlblLahjaSumma);

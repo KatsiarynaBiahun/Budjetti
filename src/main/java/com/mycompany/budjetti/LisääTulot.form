@@ -84,11 +84,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Kristen ITC" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Lasku, &#x20ac; *"/>
+        <Property name="text" type="java.lang.String" value="Summa, &#x20ac; *"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="50" y="300" width="90" height="-1"/>
+          <AbsoluteConstraints x="30" y="300" width="110" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

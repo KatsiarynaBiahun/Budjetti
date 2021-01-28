@@ -6,8 +6,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Kirjautuminen extends javax.swing.JFrame {
@@ -25,13 +27,15 @@ public class Kirjautuminen extends javax.swing.JFrame {
         jPanel1.setVisible(false);
 
         //ota taustakuva käyttöön
-        jLabel9.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
-        jLabel5.setIcon(new javax.swing.ImageIcon("src\\main\\java\\com\\mycompany\\budjetti\\taustakuva.jpg"));
+        Image uusi = new Image();
+        ImageIcon label9 = uusi.loadIcon("/taustakuva.jpg");
+        jLabel9.setIcon(label9);
+        jLabel5.setIcon(label9);
 
         jpswSalasana.setEchoChar('');
         jpswSalasana1.setEchoChar('');
         jpswSalasana2.setEchoChar('');
-}
+    }
 
     public void sulje() {
         WindowEvent winClosingEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
@@ -101,7 +105,7 @@ public class Kirjautuminen extends javax.swing.JFrame {
         jlblVahvista1.setText("Vahvista salasana : ");
 
         jLabel8.setFont(new java.awt.Font("Kristen ITC", 0, 36)); // NOI18N
-        jLabel8.setText("Tervetuloa oman Budjettiin");
+        jLabel8.setText("Tervetuloa omaan Budjettiin");
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setOpaque(true);
@@ -157,19 +161,17 @@ public class Kirjautuminen extends javax.swing.JFrame {
                             .addComponent(jbtnPoista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(50, 50, 50))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, 0)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addContainerGap())
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(70, 70, 70)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, Short.MAX_VALUE)))))
+                    .addGap(64, 64, 64)
+                    .addComponent(jLabel8)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +238,7 @@ public class Kirjautuminen extends javax.swing.JFrame {
         jbtnKirjaudu.setBounds(400, 170, 150, 29);
 
         jbtnLuo.setFont(new java.awt.Font("Kristen ITC", 0, 14)); // NOI18N
-        jbtnLuo.setText("Luo / Poista kääyttäjä");
+        jbtnLuo.setText("Luo / Poista käyttäjä");
         jbtnLuo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnLuoActionPerformed(evt);
@@ -310,6 +312,12 @@ public class Kirjautuminen extends javax.swing.JFrame {
         salasana = jpswSalasana1.getPassword();
         vahvista = jpswSalasana2.getPassword();
 
+        //kun nimi on jo varattu
+        if (read.readVainNimi(tunnus, txt)) {
+            JOptionPane.showMessageDialog(this, "Käyttäjä " + tunnus + " on jo varattu. \n Kirjoita uudelleen.");
+            return;
+        }
+
         try {
             if (tunnus.length() == 0 || salasana.length == 0) {
                 JOptionPane.showMessageDialog(null, "Merkintä jostakin kentästä puuttuu. Yritä uudelleen.", "Virhe", JOptionPane.ERROR_MESSAGE);
@@ -370,37 +378,41 @@ public class Kirjautuminen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Merkintä jostakin kentästä puuttuu. Yritä uudelleen.", "Virhe", JOptionPane.ERROR_MESSAGE);
             } else {
                 if (String.valueOf(salasana).equals(String.valueOf(vahvista))) {
+                    if (read.read(tunnus, String.valueOf(salasana), txt)) {
+                        //
+                        ReadFile poista = new ReadFile();
+                        poista.addLista("tiedot.txt");
 
-                    //
-                    ReadFile poista = new ReadFile();
-                    poista.addLista("tiedot.txt");
-                    
-                    File uusiTiedot = new File("tiedot1.txt");
-                    uusiTiedot.createNewFile();
-                    poista.rewriting("tiedot1.txt", syötö);
-                    
-                    //poistaa vanha tiedosto;
-                    File vanhaTiedot = new File("tiedot.txt");
-                    vanhaTiedot.delete();
-                    
-                    //nimeä uudelleen
-                    File upouusiTiedot = new File("tiedot.txt");
-                    uusiTiedot.renameTo(upouusiTiedot);
-                  
-                    MenotTiedostonNimi = jtxtTunnus1.getText() + "Menot.txt";
-                    TulotTiedostonNimi = jtxtTunnus1.getText() + "Tulot.txt";
-                    File MenotTiedosto = new File(MenotTiedostonNimi);
-                    File TulotTiedosto = new File(TulotTiedostonNimi);
-                    MenotTiedosto.delete();
-                    TulotTiedosto.delete();
-                    JOptionPane.showMessageDialog(this, "Käyttäjäprofiili " + tunnus + " poistettu.");
-                    jPanel1.setVisible(false);
-                    jtxtTunnus1.setText("");
-                    jpswSalasana1.setText("");
-                    jpswSalasana2.setText("");
+                        File uusiTiedot = new File("tiedot1.txt");
+                        uusiTiedot.createNewFile();
+                        poista.rewriting("tiedot1.txt", syötö);
+
+                        //poistaa vanha tiedosto;
+                        File vanhaTiedot = new File("tiedot.txt");
+                        vanhaTiedot.delete();
+
+                        //nimeä uudelleen
+                        File upouusiTiedot = new File("tiedot.txt");
+                        uusiTiedot.renameTo(upouusiTiedot);
+
+                        MenotTiedostonNimi = jtxtTunnus1.getText() + "Menot.txt";
+                        TulotTiedostonNimi = jtxtTunnus1.getText() + "Tulot.txt";
+                        File MenotTiedosto = new File(MenotTiedostonNimi);
+                        File TulotTiedosto = new File(TulotTiedostonNimi);
+                        MenotTiedosto.delete();
+                        TulotTiedosto.delete();
+                        JOptionPane.showMessageDialog(this, "Käyttäjäprofiili " + tunnus + " poistettu.");
+                        jPanel1.setVisible(false);
+                        jtxtTunnus1.setText("");
+                        jpswSalasana1.setText("");
+                        jpswSalasana2.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Käyttäjäprofiili " + tunnus + " ei poistettu. \n Salasana on väärin.");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "Käyttäjäprofiili " + tunnus + " ei poistettu. \n Vahvista salasana uudelleen.");
                 }
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Käyttäjä " + tunnus + " ei poistettu.  \n Yrittä uudelleen.");

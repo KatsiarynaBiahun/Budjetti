@@ -82,24 +82,20 @@
                   </Group>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel10" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" min="-2" pref="500" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabel9" min="-2" pref="600" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel10" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel9" min="-2" pref="600" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -210,7 +206,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Kristen ITC" size="36" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tervetuloa oman Budjettiin"/>
+            <Property name="text" type="java.lang.String" value="Tervetuloa omaan Budjettiin"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jpswSalasana1">
@@ -318,7 +314,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Kristen ITC" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Luo / Poista k&#xe4;&#xe4;ytt&#xe4;j&#xe4;"/>
+        <Property name="text" type="java.lang.String" value="Luo / Poista k&#xe4;ytt&#xe4;j&#xe4;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnLuoActionPerformed"/>
